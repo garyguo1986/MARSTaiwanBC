@@ -1,0 +1,80 @@
+{
+    "id":  "ec5b96d1-5158-4ddf-91c8-971444f0bd0c",
+    "name":  "MARS Taiwan BC",
+    "privacyStatement":  "https://incadea.com/privacy-policy/",
+    "EULA":  "https://www.incadea.com/",
+    "url":  "https://incadea.com/solutions/tire-and-aftermarket-solution/",
+    "publisher":  "Incadea China",
+    "version":  "1.0.0.0",
+    "logo":  "",
+    "help":  "",
+    "description":  "MARS Taiwan Bussiness Central Extension",
+    "dependencies":  [
+        {
+            "id":  "c1335042-3002-4257-bf8a-75c898ccb1b8",
+            "name":  "Application",
+            "publisher":  "Microsoft",
+            "version":  "15.6.42646.10209"
+        },
+        {
+             "id":  "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
+             "name":  "System Application",
+             "publisher":  "Microsoft",
+             "version":  "15.6.42646.0"
+         },
+         {
+            "id":  "74600f82-d69b-435f-b0d8-fb04306c9e79",
+            "name":  "incadea.fastfit",
+            "publisher":  "incadea GmbH",
+            "version":  "10.0.0.10452"
+        },
+        {
+            "id":  "91b714fc-745b-4fd1-9b0d-2d5e4a2014c1",
+            "name":  "WebAppSync",
+            "publisher":  "incadea GmbH",
+            "version":  "1.1.0.10400"
+        },
+        {
+            "id":  "8daf1ef4-5b09-4d74-9114-0f14cb31d08e",
+            "name":  "Data Distribution Publisher",
+            "publisher":  "incadea GmbH",
+            "version":  "1.2005.0.10400"
+        },
+        {
+            "id":  "13f40913-4cfb-463d-8a8f-fd5a9374aff7",
+            "name":  "WebAppConnector",
+            "publisher":  "incadea GmbH",
+            "version":  "1.1.0.10400"
+        },
+        {
+            "id":  "01b8ab2f-1200-4bd5-8069-5846685f9024",
+            "name":  "Data Distribution Subscriber",
+            "publisher":  "incadea GmbH",
+            "version":  "1.2005.0.10400"
+        },
+        {
+            "id":  "2654f68d-743a-4fcd-bc70-6fc89b8b7765",
+            "name":  "WebTimeClock",
+            "publisher":  "incadea GmbH",
+            "version":  "2.1.0.10400"
+        },
+        {
+            "id":  "f01e3f03-e708-494f-9e7a-e5f0a29356b2",
+            "name":  "Used Vehicle Management",
+            "publisher":  "incadea GmbH",
+            "version":  "2.1.0.10409"
+        },
+        {
+            "id":  "54ec6f90-352b-466a-accd-c9effcc0de65",
+            "name":  "VehicleCheck",
+            "publisher":  "incadea GmbH",
+            "version":  "1.0.0.10452"
+        }                     
+],
+    "platform":  "15.0.0.0",
+    "target":  "OnPrem",
+    "showMyCode":  true,
+    "brief":  "Michelin Taiwan Extension (W1)",
+    "runtime": "4.4",
+    "features": ["TranslationFile"]
+}
