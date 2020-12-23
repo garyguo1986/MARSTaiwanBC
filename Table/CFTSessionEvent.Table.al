@@ -1,4 +1,4 @@
-table 1044889 "CFT Session Event"
+table 1045241 "CFT Session Event"
 {
     // +--------------------------------------------------------------
     // | ?2015 Incadea China Software System                          |

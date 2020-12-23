@@ -76,5 +76,5 @@
     "showMyCode":  true,
     "brief":  "Michelin Taiwan Extension (W1)",
     "runtime": "4.4",
-    "features": ["TranslationFile"]
+    "features": ["TranslationFile"]    
 }

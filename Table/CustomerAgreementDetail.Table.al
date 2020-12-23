@@ -11,14 +11,6 @@ table 50006 "Customer Agreement Detail"
     // 
     // VERSION     ID          WHO    DATE        DESCRIPTION
     // TWN.01.03   RGS_TWN-327 AH     2017-04-20  INITIAL RELEASE
-    // RGS_TWN-888 122187	   QX	  2020-10-26  Table Rmoved
-    //                                            Remove field Replication Filter because table Replication Filter was removed
-
-    //++TWN1.00.122187.QX
-    ObsoleteState = Removed;
-    ObsoleteReason = '2020/10/20 - Biz response : Rmove';
-    Description = '122187';
-    //--TWN1.00.122187.QX
 
     Caption = 'Customer Agreement Detail';
     DataPerCompany = false;

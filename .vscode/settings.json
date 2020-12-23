@@ -1,0 +1,7 @@
+{
+    "al.assemblyProbingPaths": [
+        "./.netpackages",
+        "C:\\Program Files\\Microsoft Dynamics 365 Business Central\\150\\Service\\Add-ins",
+        "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319"
+    ]
+}

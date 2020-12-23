@@ -10,13 +10,6 @@ table 50000 "Bank Check Acc. Setup"
     // 
     // VERSION       ID            WHO    DATE        DESCRIPTION
     // TWN.01.09     RGS_TWN-INC01 NN     2017-04-25  INITIAL RELEASE
-    // RGS_TWN-888   122187	       QX	  2020-10-26  Removed
-
-    //++TWN1.00.122187.QX
-    ObsoleteState = Removed;
-    ObsoleteReason = '2020/10/20 - Biz response : Rmove';
-    Description = '122187';
-    //--TWN1.00.122187.QX
 
     Caption = 'Bank Check Acc. Setup';
 
