@@ -85,6 +85,58 @@ codeunit 1044863 "TW General Fun Event Handler"
         //--TWN1.00.001.122137.GG
     end;
 
+    [EventSubscriber(ObjectType::Page, Page::"Dimension Value List", 'OnBeforeGetSelectionFilter', '', false, false)]
+    local procedure GetSelectionFilterFromDimValueList(var DimVal: Record "Dimension Value"; var FilterText: Text; var IsTrigger: Boolean)
+    var
+        FirstDimVal: Code[20];
+        LastDimVal: Code[20];
+        SelectionFilter: Code[250];
+        DimValCount: Integer;
+        More: Boolean;
+    begin
+        // Start RGS_TWN-INC01
+        //EXIT(SelectionFilterManagement.GetSelectionFilterForDimensionValue(DimVal));
+
+        DimValCount := DimVal.COUNT;
+        IF DimValCount > 0 THEN BEGIN
+            DimVal.FIND('-');
+            WHILE DimValCount > 0 DO BEGIN
+                DimValCount := DimValCount - 1;
+                DimVal.MARKEDONLY(FALSE);
+                FirstDimVal := DimVal.Code;
+                LastDimVal := FirstDimVal;
+                More := (DimValCount > 0);
+                WHILE More DO
+                    IF DimVal.NEXT = 0 THEN
+                        More := FALSE
+                    ELSE
+                        IF NOT DimVal.MARK THEN
+                            More := FALSE
+                        ELSE BEGIN
+                            LastDimVal := DimVal.Code;
+                            DimValCount := DimValCount - 1;
+                            IF DimValCount = 0 THEN
+                                More := FALSE;
+                        END;
+                IF SelectionFilter <> '' THEN
+                    SelectionFilter := SelectionFilter + '|';
+                IF FirstDimVal = LastDimVal THEN
+                    SelectionFilter := SelectionFilter + FirstDimVal
+                ELSE
+                    SelectionFilter := SelectionFilter + FirstDimVal + '..' + LastDimVal;
+                IF DimValCount > 0 THEN BEGIN
+                    DimVal.MARKEDONLY(TRUE);
+                    DimVal.NEXT;
+                END;
+            END;
+        END;
+
+        //EXIT(SelectionFilter);
+        FilterText := SelectionFilter;
+        IsTrigger := true;
+        // Stop RGS_TWN-INC01
+    end;
+
     local procedure CheckCustomerEditability(CustP: Record Customer)
     var
         SalesSetupL: Record "Sales & Receivables Setup";
