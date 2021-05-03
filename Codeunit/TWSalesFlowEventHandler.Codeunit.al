@@ -74,6 +74,8 @@ codeunit 1044864 "TW Sales Flow Event Handler"
           CurrPageEditableL,
           VATAmountL
           );
+
+        EXIT(TotalSalesLineL."Amount Including VAT" >= SalesReceivablesSetupL."Sales Alert Amount");
         // Stop 120527
     end;
 

@@ -20,6 +20,7 @@ page 50014 "Cashed NR Ledger Entries"
     SourceTable = "Check Ledger Entry";
     SourceTableView = WHERE("Entry Status" = CONST(Posted),
                             "Note Type" = FILTER(NR));
+    UsageCategory = Lists;
 
     layout
     {

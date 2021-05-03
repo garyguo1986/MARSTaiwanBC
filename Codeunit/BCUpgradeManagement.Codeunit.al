@@ -14,6 +14,7 @@ codeunit 1044866 "BC Upgrade Management"
     var
         C_INC_001: Label 'The notifications has been sent.';
         C_INC_002: Label 'sending failed, please refer to notification errors.';
+        C_INC_003: label 'You can not show the document because of permission.';
         TWN_SMS_ERR_001: Label '%1 must have a value.';
 
     [Scope('OnPrem')]
@@ -607,4 +608,170 @@ codeunit 1044866 "BC Upgrade Management"
                 NotificationSendingHeaderP."Error Message" := STRSUBSTNO(TWN_SMS_ERR_001, NotificationSendingHeaderP.FIELDCAPTION("Contact Mobile Phone No."))
         end;
     end;
+
+    [Scope('OnPrem')]
+    PROCEDURE CheckUserRCPermission(SalesHistoryViewP: Record "Sales History View");
+    VAR
+        TireSetupL: Record "Fastfit Setup - General";
+        TireSetupUserL: Record "Fastfit Setup - User";
+        SalesHeaderL: Record "Sales Header";
+        SalesHeaderArchiveL: Record "Sales Header Archive";
+        SalesShipmentHeaderL: Record "Sales Shipment Header";
+        SalesInvoiceHeaderL: Record "Sales Invoice Header";
+        ReturnReceiptHeaderL: Record "Return Receipt Header";
+        SalesCrMemoHeaderL: Record "Sales Cr.Memo Header";
+        SalesQuoteL: Page "Sales Quote";
+        SalesOrderL: Page "Sales Order";
+        SalesInvoiceL: Page "Sales Invoice";
+        SalesCreditMemoL: Page "Sales Credit Memo";
+        BlanketSalesOrderL: Page "Blanket Sales Order";
+        SalesReturnOrderL: Page "Sales Return Order";
+        PostedSalesShipmentL: Page "Posted Sales Shipment";
+        PostedSalesInvoiceL: Page "Posted Sales Invoice";
+        PostedReturnReceiptL: Page "Posted Return Receipt";
+        PostedSalesCreditMemoL: Page "Posted Sales Credit Memo";
+        ShoppingBasketL: Page "Shopping Basket";
+        SalesOrderArchiveL: Page "Sales Order Archive";
+        SalesQuoteArchiveL: Page "Sales Quote Archive";
+        UserMgtL: Codeunit "User Setup Management";
+        ApplMgtL: Codeunit "Service Center Management";
+        SCMgtL: Codeunit "Service Center Management";
+    BEGIN
+        //++MARS_TWN-7106_117890_GG
+        //Quote,Order,Invoice,Credit Memo,Blanket Order,Return Order,Posted Shipment,Posted Invoice,Posted Return Receipt,Posted Credit Memo,Basket,Archived Quote,Archived Order
+        CASE SalesHistoryViewP."Document Type" OF
+            0:
+                BEGIN
+                    SalesHeaderL.RESET;
+                    SalesHeaderL.SETFILTER("Service Center", ApplMgtL.GetSCVisibilityFilter(1));
+                    SalesHeaderL.SETRANGE("Document Type", SalesHistoryViewP."Document Type");
+                    SalesHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            1:
+                BEGIN
+                    SalesHeaderL.RESET;
+                    SalesHeaderL.SETFILTER("Service Center", ApplMgtL.GetSCVisibilityFilter(1));
+                    SalesHeaderL.SETRANGE("Date Filter", 0D, WORKDATE - 1);
+                    TireSetupUserL.GET(USERID);
+                    IF TireSetupUserL."Hide Sales Documents" THEN
+                        SalesHeaderL.SETRANGE("Hide Document", FALSE)
+                    ELSE
+                        SalesHeaderL.SETRANGE("Hide Document");
+                    SalesHeaderL.SETRANGE("Document Type", SalesHistoryViewP."Document Type");
+                    SalesHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            2:
+                BEGIN
+                    SalesHeaderL.RESET;
+                    SalesHeaderL.SETFILTER("Service Center", ApplMgtL.GetSCVisibilityFilter(1));
+                    SalesHeaderL.SETRANGE("Document Type", SalesHistoryViewP."Document Type");
+                    SalesHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            3:
+                BEGIN
+                    SalesHeaderL.RESET;
+                    SalesHeaderL.SETFILTER("Service Center", ApplMgtL.GetSCVisibilityFilter(1));
+                    SalesHeaderL.SETRANGE("Document Type", SalesHistoryViewP."Document Type");
+                    SalesHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            4:
+                BEGIN
+                    SalesHeaderL.RESET;
+                    IF UserMgtL.GetSalesFilter <> '' THEN BEGIN
+                        SalesHeaderL.SETRANGE("Responsibility Center", UserMgtL.GetSalesFilter);
+                    END;
+                    IF SCMgtL.GetSalesFilter <> '' THEN BEGIN
+                        SalesHeaderL.SETRANGE("Service Center", SCMgtL.GetSalesFilter);
+                    END;
+                    SalesHeaderL.SETRANGE("Document Type", SalesHistoryViewP."Document Type");
+                    SalesHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            5:
+                BEGIN
+                    SalesHeaderL.RESET;
+                    IF UserMgtL.GetSalesFilter <> '' THEN BEGIN
+                        SalesHeaderL.SETFILTER("Service Center", ApplMgtL.GetSCVisibilityFilter(1));
+                    END;
+                    SalesHeaderL.SETRANGE("Document Type", SalesHistoryViewP."Document Type");
+                    SalesHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            6:
+                BEGIN
+                    SalesShipmentHeaderL.RESET;
+                    SalesShipmentHeaderL.SetSecurityFilterOnRespCenter;
+                    SalesShipmentHeaderL.SETFILTER("Service Center", ApplMgtL.GetSCVisibilityFilter(0));
+                    SalesShipmentHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesShipmentHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            7:
+                BEGIN
+                    SalesInvoiceHeaderL.RESET;
+                    SalesInvoiceHeaderL.SetSecurityFilterOnRespCenter;
+                    IF ApplMgtL.GetSCVisibilityFilter(0) <> '' THEN BEGIN
+                        SalesInvoiceHeaderL.SETFILTER("SC Codes Lines Filter", ApplMgtL.GetSCVisibilityFilter(0));
+                        SalesInvoiceHeaderL.CALCFIELDS("SC Codes Lines");
+                        SalesInvoiceHeaderL.SETRANGE("SC Codes Lines", TRUE);
+                    END;
+                    SalesInvoiceHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesInvoiceHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            8:
+                BEGIN
+                    ReturnReceiptHeaderL.RESET;
+                    ReturnReceiptHeaderL.SetSecurityFilterOnRespCenter;
+                    ReturnReceiptHeaderL.SETFILTER("Service Center", ApplMgtL.GetSCVisibilityFilter(0));
+                    ReturnReceiptHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF ReturnReceiptHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            9:
+                BEGIN
+                    SalesCrMemoHeaderL.RESET;
+                    SalesCrMemoHeaderL.SetSecurityFilterOnRespCenter;
+                    IF ApplMgtL.GetSCVisibilityFilter(0) <> '' THEN BEGIN
+                        SalesCrMemoHeaderL.SETFILTER("SC Codes Lines Filter", ApplMgtL.GetSCVisibilityFilter(0));
+                        SalesCrMemoHeaderL.CALCFIELDS("SC Codes Lines");
+                        SalesCrMemoHeaderL.SETRANGE("SC Codes Lines", TRUE);
+                    END;
+                    SalesCrMemoHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesCrMemoHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            10:
+                BEGIN
+                    SalesHeaderL.RESET;
+                    SalesHeaderL.SETFILTER("Service Center", ApplMgtL.GetSCVisibilityFilter(1));
+                    TireSetupL.GetSetup;
+                    IF NOT TireSetupL."Other Shopping Baskets visible" THEN BEGIN
+                        SalesHeaderL.SETRANGE("User ID", USERID);
+                    END;
+                    SalesHeaderL.SETRANGE("Document Type", SalesHistoryViewP."Document Type");
+                    SalesHeaderL.SETRANGE("No.", SalesHistoryViewP."Document No.");
+                    IF SalesHeaderL.ISEMPTY THEN
+                        ERROR(C_INC_003);
+                END;
+            11:
+                BEGIN
+                END;
+            12:
+                BEGIN
+                END;
+        END;
+        //--MARS_TWN-7106_117890_GG
+    END;
+
 }

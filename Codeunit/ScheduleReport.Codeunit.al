@@ -16,19 +16,19 @@ codeunit 50005 "Schedule Report"
     begin
     end;
 
-    // [Scope('OnPrem')]
-    // procedure GetCompanyTenant(FileNameP: Text)
-    // var
-    //     OutSL: OutStream;
-    //     TempFileL: File;
-    // begin
-    //     TempFileL.WRITEMODE(TRUE);
-    //     TempFileL.OPEN(FileNameP);
-    //     TempFileL.CREATEOUTSTREAM(OutSL);
+    [Scope('OnPrem')]
+    procedure GetCompanyTenant(FileNameP: Text)
+    var
+        OutSL: OutStream;
+        TempFileL: File;
+    begin
+        TempFileL.WRITEMODE(TRUE);
+        TempFileL.OPEN(FileNameP);
+        TempFileL.CREATEOUTSTREAM(OutSL);
 
-    //     XMLPORT.EXPORT(XMLPORT::"Replication Company", OutSL);
-    //     TempFileL.CLOSE;
-    // end;
+        XMLPORT.EXPORT(XMLPORT::"Replication Company", OutSL);
+        TempFileL.CLOSE;
+    end;
 
     [Scope('OnPrem')]
     procedure PrintReport(ReportNumberP: Text)
@@ -41,7 +41,10 @@ codeunit 50005 "Schedule Report"
         CASE ReportIDL OF
             REPORT::"Send Notifications":
                 BEGIN
-                    SendNotificationsL.SetServCenterLimit(GetParameter(ReportNumberP, 2));
+                    //++TWN1.00.122187.QX
+                    // SendNotificationsL.SetServCenterLimit(GetParameter(ReportNumberP, 2));
+                    SendNotificationsL.SetServiceCenterFilter(GetParameter(ReportNumberP, 2));
+                    //--TWN1.00.122187.QX                    
                     SendNotificationsL.USEREQUESTPAGE := FALSE;
                     SendNotificationsL.RUNMODAL;
                 END

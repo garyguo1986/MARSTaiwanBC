@@ -8,12 +8,13 @@ page 50020 "Customer Agreement List"
     // | REMARK :                                                     |
     // +--------------------------------------------------------------+
     // 
-    // VERSION     ID          WHO    DATE        DESCRIPTION
-    // TWN.01.03   RGS_TWN-327 AH     2017-04-20  Maintain Customer Agreement Detail Content
-    // TWN.01.03   RGS_TWN-327 AH     2017-04-20  Connect Print/Update function
-    // TWN.01.03   RGS_TWN-327 AH     2017-04-20  If user agree, send SMS
-    // TWN.01.03   RGS_TWN-327 AH     2017-04-20  change user selection message
-    // 119434      RGS_TWN-837 WP     2019-05-15  Add publisher OnPostReportEvent
+    // VERSION     ID           WHO    DATE        DESCRIPTION
+    // TWN.01.03   RGS_TWN-327  AH     2017-04-20  Maintain Customer Agreement Detail Content
+    // TWN.01.03   RGS_TWN-327  AH     2017-04-20  Connect Print/Update function
+    // TWN.01.03   RGS_TWN-327  AH     2017-04-20  If user agree, send SMS
+    // TWN.01.03   RGS_TWN-327  AH     2017-04-20  change user selection message
+    // 119434      RGS_TWN-837  WP     2019-05-15  Add publisher OnPostReportEvent
+    // 122779      RGS_TWN-8365 QX	   2021-04-06  Set Consent Data Line
 
     AutoSplitKey = true;
     Caption = 'Customer Agreement List';
@@ -108,6 +109,7 @@ page 50020 "Customer Agreement List"
                     LMSG_YES: Label 'Contact %1 accept this agreement.';
                     LMSG_NO: Label 'Contact %1 decline this agreement.';
                     LMSG_NA: Label 'Contact %1 not available.';
+                    ConsentDataLineL: Record "Consent Data Line";
                 begin
                     //++Inc.TWN-327.AH
                     CLEAR(Selection);
@@ -136,6 +138,16 @@ page 50020 "Customer Agreement List"
                             CLEAR(cuSMSMgtL);
                             ContactInfo.TESTFIELD("Mobile Phone No.");
                             cuSMSMgtL.DC_CustomerAgreement(ContactInfo."No.", ContactInfo."No.");
+                            //++TWN1.0.0.3.122779.QX
+                            ConsentDataLineL.Reset();
+                            ConsentDataLineL.SetRange("Contact No.", ContactInfo."No.");
+                            ConsentDataLineL.ModifyAll("Accepts E-Mail", true, true);
+                            ConsentDataLineL.ModifyAll("Accepts Phone Call", true, true);
+                            ConsentDataLineL.ModifyAll("Accepts SMS", true, true);
+                            ConsentDataLineL.ModifyAll("Customer Signed", ConsentDataLineL."Customer Signed"::"Accepted Consent", true);
+                            ConsentDataLineL.ModifyAll("Consent Start Date", WorkDate());
+                            ConsentDataLineL.ModifyAll("Disagreement Code", '', true);
+                            //--TWN1.0.0.3.122779.QX
                         END;
                         //--Inc.TWN-327.AH
                         // Start 119434

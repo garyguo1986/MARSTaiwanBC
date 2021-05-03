@@ -109,11 +109,14 @@ codeunit 1044880 "Tracking Mgt. Event Handler"
             MUTFunctionsG.AddUsageTrackingEntry('MUT_5080');
     end;
 
-    [EventSubscriber(ObjectType::Report, Report::"Send Notifications", 'OnPostReportEvent', '', false, false)]
-    local procedure OnPostReportFromSendNotificationSub()
-    begin
-        MUTFunctionsG.AddUsageTrackingEntry('MUT_6500');
-    end;
+    //++TWN1.00.122187.QX
+    // Handled in Codeunit 1044860
+    // [EventSubscriber(ObjectType::Report, Report::"Send Notifications", 'OnPostReportEvent', '', false, false)]
+    // local procedure OnPostReportFromSendNotificationSub()
+    // begin
+    //     MUTFunctionsG.AddUsageTrackingEntry('MUT_6500');
+    // end;
+    //--TWN1.00.122187.QX
 
     [EventSubscriber(ObjectType::Report, Report::"Inventory - Sales Statistics", 'OnAfterPostReport', '', false, false)]
     local procedure OnPostReportFromInventorySalesStatisticSub()

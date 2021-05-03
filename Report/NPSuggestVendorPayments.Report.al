@@ -1,6 +1,5 @@
 report 50006 "NP Suggest Vendor Payments"
 {
-
     dataset
     {
 

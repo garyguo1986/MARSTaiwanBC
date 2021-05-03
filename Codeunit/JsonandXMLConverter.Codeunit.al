@@ -25,6 +25,26 @@ codeunit 50010 "Json and XML Converter"
         RemoveAllAttributes(iEnumL);
     end;
 
+    procedure BigTextJson2XML(var jsonBigTextP: BigText; var xmlDocP: DotNet SystemXmlXmlDocument)
+    var
+        xmlElementL: DotNet SystemXmlXmlElement;
+        iEnumL: dotnet SystemCollectionsIEnumerator;
+        jsonInStreamL: InStream;
+        jsonOutStreamL: OutStream;
+        TempBlobL: Codeunit "Temp Blob";
+    begin
+        TempBlobL.CreateOutStream(jsonOutStreamL, TextEncoding::UTF8);
+        jsonBigTextP.Write(jsonOutStreamL);
+        TempBlobL.CreateInStream(jsonInStreamL, TextEncoding::UTF8);
+        jsonReader := jsonFactory.CreateJsonReader(jsonInStreamL, ReaderQuotas.Max);
+        xmlDocP := xmlDocP.XmlDocument();
+        xmlDocP.Load(jsonReader);
+
+        xmlElementL := xmlDocP.DocumentElement();
+        iEnumL := xmlDocP.GetEnumerator();
+        RemoveAllAttributes(iEnumL);
+    end;
+
     procedure XML2Json(var xmlInStreamP: Instream; var jsonOutStreamP: OutStream)
     var
         XDocL: DotNet SystemXmlLinqXDocument;
@@ -112,6 +132,20 @@ codeunit 50010 "Json and XML Converter"
         //--MIL1.00.001.120360.QX
     end;
 
+    procedure LoadJson2TempBlob(var RequestP: BigText; var TempBlobP: Codeunit "Temp Blob")
+    var
+        xmlDocL: DotNet SystemXmlXmlDocument;
+        xmlOutStreamL: OutStream;
+    begin
+        //++MIL1.00.001.120360.QX
+        BigTextJson2XML(RequestP, xmlDocL);
+
+        TempBlobP.CreateOutStream(xmlOutStreamL, TextEncoding::UTF8);
+
+        xmlDocL.Save(xmlOutStreamL);
+        //--MIL1.00.001.120360.QX
+    end;
+
     procedure AddNode(var xmlDocP: DotNet SystemXmlXmlDocument; var ParentNodeP: DotNet SystemXmlXmlNode; ElementNameP: Text; NodeTextP: Text; TypeAttributeP: Text)
     var
         xmlNodeL: DotNet SystemXmlXmlNode;
@@ -150,7 +184,7 @@ codeunit 50010 "Json and XML Converter"
         //--MIL1.00.001.120360.QX
     end;
 
-    procedure XML2JsonBigText(var xmlDocP: DotNet SystemXmlLinqXDocument; var jsonOutText: BigText)
+    procedure XML2JsonBigText(var xmlDocP: DotNet XmlDocument; var jsonOutText: BigText)
     var
         xmlWriterL: DotNet SystemXmlXmlDictionaryWriter;
         jsonOutStreamL: DotNet SystemIOMemoryStream;

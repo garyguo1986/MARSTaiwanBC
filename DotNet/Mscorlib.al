@@ -50,5 +50,14 @@ dotnet
         type(System.Collections.IEnumerator; SystemCollectionsIEnumerator)
         {
         }
+        type(System.Security.Cryptography.MD5; SystemSecurityCryptographyMD5)
+        {
+        }
+        type(System.BitConverter; SystemBitConverter)
+        {
+        }
+        type(System.Text.UTF8Encoding; SystemTextUTF8Encoding)
+        {
+        }
     }
 }

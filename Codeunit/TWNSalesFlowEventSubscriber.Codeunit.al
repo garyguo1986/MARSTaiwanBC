@@ -12,7 +12,6 @@ codeunit 50002 "TWN Sales Flow EventSubscriber"
     end;
 
     [EventSubscriber(ObjectType::Codeunit, 414, 'OnBeforeReleaseSalesDoc', '', false, false)]
-    [Scope('OnPrem')]
     local procedure BeforeReleaseSalesDocSub(var SalesHeader: Record "Sales Header")
     var
         SalesHeaderL: Record "Sales Header";
@@ -36,7 +35,6 @@ codeunit 50002 "TWN Sales Flow EventSubscriber"
     end;
 
     [EventSubscriber(ObjectType::Codeunit, 414, 'OnAfterReleaseSalesDoc', '', false, false)]
-    [Scope('OnPrem')]
     local procedure AfterReleaseSalesDocSub(var SalesHeader: Record "Sales Header")
     begin
         // Codeunit Release Sales Document
@@ -46,7 +44,6 @@ codeunit 50002 "TWN Sales Flow EventSubscriber"
     end;
 
     [EventSubscriber(ObjectType::Codeunit, 414, 'OnAfterReopenSalesDoc', '', false, false)]
-    [Scope('OnPrem')]
     local procedure AfterReopenSalesDocSub(var SalesHeader: Record "Sales Header")
     begin
         // Codeunit Release Sales Document

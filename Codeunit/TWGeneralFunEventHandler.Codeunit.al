@@ -13,6 +13,7 @@ codeunit 1044863 "TW General Fun Event Handler"
     // 120526        RGS_TWN-827   GG     2019-09-05  New Object
     // 121697        RGS_TWN-7889  QX     2020-05-25  Create a pop out window to alert can't modify customer card
     // 122137        RGS_TWN-872   GG     2020-10-13  add new function PageItemCard_InsertNewItemInsideEventSub
+    // 122780        RGS_TWN-8427  QX     2021-04-06  Set Default Contact Type
 
     [EventSubscriber(ObjectType::Page, Page::"Contact Search Results", 'OnBeforeActionEvent', 'Create New Sales Order', true, true)]
     local procedure PageContactSearchResult_CreateSalesOrder_OnBeforeAction(var Rec: Record "Contact Search Result")
@@ -136,6 +137,35 @@ codeunit 1044863 "TW General Fun Event Handler"
         IsTrigger := true;
         // Stop RGS_TWN-INC01
     end;
+
+    //++TWN1.0.0.3.122780.QX
+    [EventSubscriber(ObjectType::Page, Page::"Contact Card", 'OnNewRecordEvent', '', true, false)]
+    local procedure PageContactCard_OnNewRecordEvent(var Rec: Record Contact; BelowxRec: Boolean; VAR xRec: Record Contact)
+    var
+        SalesSetupL: Record "Sales & Receivables Setup";
+        ContactL: Record Contact;
+        ContactBusRelL: Record "Contact Business Relation";
+    begin
+        rec.Type := rec.type::Person;
+        Clear(SalesSetupL);
+        if SalesSetupL.Get() then;
+        if SalesSetupL."No Modify Customer" = '' then
+            exit;
+
+        ContactBusRelL.Reset();
+        ContactBusRelL.SetRange("Link to Table", ContactBusRelL."Link to Table"::Customer);
+        ContactBusRelL.SetRange("No.", SalesSetupL."No Modify Customer");
+        if ContactBusRelL.FindFirst() then begin
+            ContactL.Reset();
+            ContactL.SetRange(Type, ContactL.Type::Company);
+            ContactL.SetRange("No.", ContactBusRelL."Contact No.");
+            if ContactL.FindFirst() then begin
+                Rec.Validate("Company No.", ContactL."No.");
+                Rec.Validate("Company Name", ContactL.Name);
+            end;
+        end;
+    end;
+    //--TWN1.0.0.3.122780.QX
 
     local procedure CheckCustomerEditability(CustP: Record Customer)
     var

@@ -21,6 +21,7 @@ page 50013 "Outstanding NR Ledger Entries"
     SourceTable = "Check Ledger Entry";
     SourceTableView = WHERE("Entry Status" = CONST(Note),
                             "Note Type" = FILTER(NR));
+    UsageCategory = Lists;
 
     layout
     {

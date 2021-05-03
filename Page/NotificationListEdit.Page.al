@@ -137,17 +137,17 @@ page 50023 "Notification List Edit"
     {
         area(navigation)
         {
-            group("連絡人歷史")
+            group("Contact History")
             {
                 Caption = 'Contact History';
-                action("已發送簡訊")
+                action("Archived Notifications")
                 {
                     Caption = 'Archived Notifications';
                     Image = ContactPerson;
                     RunObject = Page "Archived Notifications";
                     RunPageLink = "Contact No." = FIELD("Contact No.");
                 }
-                action("SMS分錄查詢")
+                action("Notification Entries")
                 {
                     Caption = 'Notification Entries';
                     Image = ContactReference;
