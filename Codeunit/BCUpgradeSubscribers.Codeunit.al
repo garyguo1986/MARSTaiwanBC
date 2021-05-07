@@ -447,4 +447,21 @@ codeunit 1044860 "BC Upgrade Subscribers"
             Rec."Service Type Master" := ServiceTypeMasterCodeL;
         end;
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"CFT Session Event", 'OnAfterInsertEvent', '', true, true)]
+    local procedure TableCFTSessionEvent_OnAfterInsertSub(var Rec: Record "CFT Session Event"; RunTrigger: Boolean)
+    var
+        UserSetupL: Record "User Setup";
+    begin
+        //"User ID", "Server Instance ID", "Session ID"
+        if Rec."Interface Type" <> Rec."Interface Type"::OCT then
+            exit;
+        if not UserSetupL.Get(Rec."User ID") then begin
+            UserSetupL.Init();
+            UserSetupL."User ID" := Rec."User ID";
+            UserSetupL.Insert();
+        end;
+        UserSetupL."Purchase Service Center Filter" := Rec."Service Center Code";
+        UserSetupL.Modify();
+    end;
 }

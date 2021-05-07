@@ -8,7 +8,7 @@
 // 
 // VERSION       ID       WHO    DATE        DESCRIPTION
 // RGS_TWN-888   122187	  QX	 2020-12-17  Create Object
-
+// RGS_TWN-888   122187	  GG	 2021-05-06  Fix bug of validation line no. is sales line before no. have value
 codeunit 1044866 "BC Upgrade Management"
 {
     var
@@ -313,14 +313,24 @@ codeunit 1044866 "BC Upgrade Management"
         case Rec.Type of
             Rec.Type::Item:
                 begin
-                    Item.get(Rec."No.");
+                    //++TWN1.00.122187.GG
+                    //Item.get(Rec."No.");
+                    Clear(Item);
+                    if not Item.Get(Rec."No.") then
+                        exit;
+                    //--TWN1.00.122187.GG
                     // Start 112159
                     Rec."Main Group Code" := Item."Main Group Code";
                     // Stop 112159
                 end;
             Rec.Type::Resource:
                 begin
-                    Res.get(Rec."No.");
+                    //++TWN1.00.122187.GG
+                    //Res.get(Rec."No.");
+                    Clear(Res);
+                    if not Res.Get(Rec."No.") then
+                        exit;
+                    //--TWN1.00.122187.GG                    
                     //++Inc.TWN-459.AH
                     //++TWN1.00.122187.QX
                     // "Item Type" := Item."Item Type";
