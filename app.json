@@ -5,7 +5,7 @@
     "EULA": "https://www.incadea.com/",
     "url": "https://incadea.com/solutions/tire-and-aftermarket-solution/",
     "publisher": "Incadea China",
-    "version": "1.0.0.5",
+    "version": "1.0.0.7",
     "logo": "",
     "help": "",
     "description": "MARS Taiwan Bussiness Central Extension",
@@ -20,7 +20,7 @@
             "id": "74600f82-d69b-435f-b0d8-fb04306c9e79",
             "name": "incadea.fastfit",
             "publisher": "incadea GmbH",
-            "version": "10.0.0.11698"
+            "version": "10.0.0.12592"
         },
         {
             "id": "8daf1ef4-5b09-4d74-9114-0f14cb31d08e",

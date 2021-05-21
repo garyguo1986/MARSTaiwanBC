@@ -17,6 +17,7 @@
 // 115402       MARS_TWN-6798  GG     2018-07-16  Bug fix about realase contact the action is missing
 // RGS_TWN-511               AH     2017-05-19  Add <Main Group Code>, <Sub Group Code>, <Position Group Code> 's description on Page
 // RGS_TWN-8365  122779	  QX	 2021-04-06  Set Consent Data Line Values
+// RGS_TWN-8365  122779	  GG	 2021-05-12  Set "VAT Registration No." after contact 
 
 codeunit 1044860 "BC Upgrade Subscribers"
 {
@@ -103,6 +104,23 @@ codeunit 1044860 "BC Upgrade Subscribers"
         if Contact."VAT Registration No." <> '' then
             SalesHeader."VAT Registration No." := Contact."VAT Registration No.";
         //Stop RGS_TWN-342
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnAfterValidateEvent', 'Bill-to Contact No.', true, true)]
+    local procedure TableSalesHeader_OnAfterValidateBilltoContactNoSub(var Rec: Record "Sales Header"; var xRec: Record "Sales Header"; CurrFieldNo: Integer)
+    var
+        ContactL: Record Contact;
+    begin
+        //++TWN1.00.112779.GG
+        if Rec."Bill-to Contact No." = '' then
+            exit;
+        if not ContactL.Get(Rec."Bill-to Contact No.") then
+            exit;
+        if ContactL."Bill-to Company Name" <> '' then
+            Rec."Bill-to Company Name" := ContactL."Bill-to Company Name";
+        if ContactL."VAT Registration No." <> '' then
+            Rec."VAT Registration No." := ContactL."VAT Registration No.";
+        //--TWN1.00.112779.GG
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterValidateEvent', 'No.', true, true)]
@@ -461,6 +479,8 @@ codeunit 1044860 "BC Upgrade Subscribers"
             UserSetupL."User ID" := Rec."User ID";
             UserSetupL.Insert();
         end;
+        UserSetupL."Login Service Center" := Rec."Service Center Code";
+        UserSetupL."Sales Service Center Filter" := Rec."Service Center Code";
         UserSetupL."Purchase Service Center Filter" := Rec."Service Center Code";
         UserSetupL.Modify();
     end;
