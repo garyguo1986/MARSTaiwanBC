@@ -13,6 +13,7 @@ page 1044881 "Item DOT Dealers"
 
     Caption = 'Item DOT Dealers';
     PageType = List;
+    UsageCategory = Lists;
     SourceTable = "Item DOT Entry";
     SourceTableView = SORTING(Type, Tenant, "Upload Date")
                       ORDER(Ascending)
@@ -49,6 +50,7 @@ page 1044881 "Item DOT Dealers"
                     Image = UpdateDescription;
                     Promoted = true;
                     PromotedIsBig = true;
+                    PromotedCategory = Process;
                     RunObject = Report "Upload Item Tracking";
                 }
             }

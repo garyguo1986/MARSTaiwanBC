@@ -66,6 +66,7 @@ codeunit 1044883 "TW Update Item Tracking Code"
 
     local procedure GetTenantBufferToTable(var ExcelBufferP: Record "Excel Buffer")
     var
+        ReplicationCompanyL: Record "Replication Company Old";
         ItemDOTEntryL: Record "Item DOT Entry";
         RowLengthL: Integer;
         ColLengthL: Integer;
@@ -73,7 +74,6 @@ codeunit 1044883 "TW Update Item Tracking Code"
         NewTenant: Text[128];
         IsActiveL: Boolean;
     begin
-        /*
         ItemDOTEntryL.RESET;
         ItemDOTEntryL.SETRANGE(Type, ItemDOTEntryL.Type::Tenant);
         ItemDOTEntryL.MODIFYALL(Active, FALSE);
@@ -115,7 +115,6 @@ codeunit 1044883 "TW Update Item Tracking Code"
                 END;
             END;
         END;
-        */
     end;
 
     local procedure GetItemTrackingCodeBufferToTable(var ExcelBufferP: Record "Excel Buffer")
@@ -174,7 +173,6 @@ codeunit 1044883 "TW Update Item Tracking Code"
         ItemL.GET(TempItemDOTEntryP."Item No.");
         ItemL.VALIDATE("Item Tracking Code", TempItemDOTEntryP."Item Tracking Code");
         ItemL.MODIFY(TRUE);
-
     end;
 
     procedure SetAction(ActionOptionsP: Option " ","GetBuffer","Import","GetTenantBuffer","GetItemBuffer","ImportBufferToItem")
@@ -244,6 +242,6 @@ codeunit 1044883 "TW Update Item Tracking Code"
     var
         TempExcelBufferG: Record "Excel Buffer" temporary;
         TempItemG: Record Item temporary;
-        TempItemDOTEntryG: Record "Item DOT Entry";
+        TempItemDOTEntryG: Record "Item DOT Entry" temporary;
         ActionOptionsG: Option " ","GetBuffer","Import","GetTenantBuffer","GetItemBuffer","ImportBufferToItem";
 }

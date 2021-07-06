@@ -416,13 +416,14 @@ codeunit 1044866 "BC Upgrade Management"
     [Scope('OnPrem')]
     procedure SendNotifications_OnBeforeSendNotification(var NotificationSendingHeaderP: Record "Notification Sending Header"; SingleNotificationP: Boolean; var SkipP: Boolean)
     begin
-        skipP := IsNoteNeedSend(NotificationSendingHeaderP, SingleNotificationP);
+        skipP := NOT IsMandatory(NotificationSendingHeaderP, SingleNotificationP);
     end;
 
     [Scope('OnPrem')]
     //++TWN1.00.122187.QX
     // LOCAL PROCEDURE IsNoteNeedSend(VAR NotificationSendingHeaderP: Record "Notification Sending Header"): Boolean;
-    LOCAL PROCEDURE IsNoteNeedSend(VAR NotificationSendingHeaderP: Record "Notification Sending Header"; SingleNotificationP: Boolean): Boolean;
+    // Function name and result are opposite, changed function name to IsMandatory 
+    LOCAL PROCEDURE IsMandatory(VAR NotificationSendingHeaderP: Record "Notification Sending Header"; SingleNotificationP: Boolean): Boolean;
     //--TWN1.00.122187.QX
     VAR
         CurrDateTimeL: DateTime;

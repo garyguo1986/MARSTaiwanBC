@@ -12,7 +12,7 @@ tableextension 1073882 "Cust. Ledger Entry Ext" extends "Cust. Ledger Entry"
     // RGS_TWN-336  NN     2017-04-20  Add fields 50000 - 50003    
     fields
     {
-        field(50000; "Bill-to Contact Name"; Text[50])
+        field(50000; "Bill-to Contact Name"; Text[100])
         {
             Description = 'RGS_TWN-336';
             Caption = 'Bill-to Contact Name';
@@ -20,7 +20,7 @@ tableextension 1073882 "Cust. Ledger Entry Ext" extends "Cust. Ledger Entry"
             CalcFormula = lookup(Contact.Name where("No." = field("Bill-to Contact No.")));
             Editable = false;
         }
-        field(50001; "Bill-to Phone No."; Text[30])
+        field(50001; "Bill-to Phone No."; Text[50])
         {
             Description = 'RGS_TWN-336';
             Caption = 'Bill-to Phone No.';

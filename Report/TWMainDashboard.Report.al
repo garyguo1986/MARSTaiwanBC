@@ -15,8 +15,8 @@ report 1044876 "TW Main Dashboard"
     // MARS_TWN_7690121391        GG     2020-03-03  Add new Indicator '外島' and modify '台北市+新北市' and '花蓮+台東'
     DefaultLayout = RDLC;
     RDLCLayout = './Report/TWMainDashboard.rdlc';
-
     Caption = 'Main Dashboard';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {

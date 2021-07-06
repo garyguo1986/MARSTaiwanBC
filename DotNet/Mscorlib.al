@@ -59,5 +59,8 @@ dotnet
         type(System.Text.UTF8Encoding; SystemTextUTF8Encoding)
         {
         }
+        type(System.TimeZoneInfo; SystemTimeZoneInfo)
+        {
+        }
     }
 }

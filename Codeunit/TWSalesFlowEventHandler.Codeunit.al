@@ -10,6 +10,28 @@ codeunit 1044864 "TW Sales Flow Event Handler"
 
     // VERSION       ID            WHO    DATE        DESCRIPTION
     // 120527        RGS_TWN-847   GG     2019-09-09  New Object
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnBeforeValidateEvent', 'VAT Registration No.', true, true)]
+    local procedure TableSalesHeader_OnBeforeValidateVATRegistrationNoSub(var Rec: Record "Sales Header"; var xRec: Record "Sales Header"; CurrFieldNo: Integer)
+    var
+        GLSetupL: Record "General Ledger Setup";
+        CustomerL: Record Customer;
+    begin
+        if CurrFieldNo <> Rec.FieldNo("VAT Registration No.") then
+            exit;
+
+        GLSetupL.GetRecordOnce();
+        case GLSetupL."Bill-to/Sell-to VAT Calc." of
+            GLSetupL."Bill-to/Sell-to VAT Calc."::"Bill-to/Pay-to No.":
+                if not CustomerL.get(Rec."Bill-to Customer No.") then
+                    exit;
+            GLSetupL."Bill-to/Sell-to VAT Calc."::"Sell-to/Buy-from No.":
+                if not CustomerL.get(Rec."Sell-to Customer No.") then
+                    exit;
+        end;
+
+        if CustomerL."Central Maintenance" then
+            xRec."VAT Registration No." := Rec."VAT Registration No.";
+    end;
 
     [EventSubscriber(ObjectType::Page, Page::"Shopping Basket", 'OnBeforeActionEvent', 'Cre&ate Invoice and Post', true, false)]
     local procedure PageShoppingBasket_InvoiceAndPost_OnBeforeAction(var Rec: Record "Sales Header")

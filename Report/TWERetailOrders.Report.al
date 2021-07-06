@@ -13,17 +13,20 @@ report 1044879 "TW E Retail Orders"
 
     Caption = 'E Retail Orders';
     ProcessingOnly = true;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {
-        dataitem(SalesInvoiceHeader; "Sales Invoice Header")
+        //dataitem(SalesInvoiceHeader; "Sales Invoice Header")
+        dataitem(SalesInvoiceHeader; "Sales Invoice Header Buffer")
         {
-            DataItemTableView = SORTING("No.")
+            DataItemTableView = SORTING("Service Center Key", "No.")
                                 ORDER(Ascending);
-            dataitem(SalesInvoiceLine; "Sales Invoice Line")
+            //dataitem(SalesInvoiceLine; "Sales Invoice Line")
+            dataitem(SalesInvoiceLine; "Sales Invoice Line Buffer")
             {
-                DataItemLink = "Document No." = FIELD("No.");
-                DataItemTableView = SORTING("Document No.", "Line No.")
+                DataItemLink = "Service Center Key" = field("Service Center Key"), "Document No." = FIELD("No.");
+                DataItemTableView = SORTING("Service Center Key", "Document No.", "Line No.")
                                     ORDER(Ascending)
                                     WHERE(Type = FILTER(<> ' '),
                                           "No." = FILTER(<> ''));

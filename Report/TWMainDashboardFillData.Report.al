@@ -7,23 +7,28 @@ report 1044875 "TW Main Dashboard Fill Data"
     // |                                                              |
     // | REMARK :                                                     |
     // +--------------------------------------------------------------+
-    // 
+    //
     // VERSION       ID            WHO    DATE        DESCRIPTION
     // RGS_TWN-833   119130        GY     2019-04-08  New Object
     // MARS_TWN-7689 121036      GG     2019-11-28  Remove "Amount Incl. VAT" filter
+    // RGS_TWN-8365  122779        GG     2021-06-01  Use buffer table instand orignal table
 
     Caption = 'TW Main Dashboard Fill Data';
+    UsageCategory = ReportsAndAnalysis;
     ProcessingOnly = true;
-
+    Permissions = tabledata "Sales Invoice Header Buffer" = rmid,
+        tabledata "Sales Invoice Line Buffer" = rmid,
+        tabledata "Sales Cr.Memo Header Buffer" = rmid,
+        tabledata "Sales Cr.Memo Line Buffer" = rmid;
     dataset
     {
-        dataitem(SalesInvoiceHeader; "Sales Invoice Header")
+        dataitem(SalesInvoiceHeader; "Sales Invoice Header Buffer")
         {
-
+            DataItemTableView = sorting("Service Center Key", "No.") order(ascending) where("Buffer Flag" = filter(false));
             trigger OnAfterGetRecord()
             begin
-                IF TableKeyInfoG.IsSalesInvoiceExist(SalesInvoiceHeader) THEN
-                    CurrReport.SKIP;
+                // IF TableKeyInfoG.IsSalesInvoiceExist(SalesInvoiceHeader) THEN
+                //     CurrReport.SKIP;
                 // Start 121036
                 //SalesInvoiceHeader.CALCFIELDS("Amount Including VAT");
                 //IF SalesInvoiceHeader."Amount Including VAT" = 0 THEN
@@ -36,19 +41,29 @@ report 1044875 "TW Main Dashboard Fill Data"
                 OverallCount(SalesInvoiceHeader, FALSE);
                 SalesInvoiceQuantity(SalesInvoiceHeader, FALSE);
 
-                TableKeyInfoG.RecordSalesInvoice(SalesInvoiceHeader);
+                //TableKeyInfoG.RecordSalesInvoice(SalesInvoiceHeader);
+                SalesInvoiceHeader."Buffer Flag" := true;
+                SalesInvoiceHeader.Modify();
             end;
         }
-        dataitem(SalesInvoiceHeaderCancelled; "Sales Invoice Header")
+        dataitem(SalesInvoiceHeaderCancelled; "Sales Invoice Header Buffer")
         {
-            DataItemTableView = WHERE("Canceled By" = FILTER(<> ''));
-
+            //DataItemTableView = WHERE("Canceled By" = FILTER(<> ''));
+            DataItemTableView = where("Cancelled" = filter(true));
             trigger OnAfterGetRecord()
+            var
+                CancelldedDocL: Record "Cancelled Document Buffer";
             begin
-                IF NOT SalesCrMemoHeaderG.GET(SalesInvoiceHeaderCancelled."Canceled By") THEN
+                if not CancelldedDocL.Get(SalesInvoiceHeaderCancelled."Service Center Key", 112, SalesInvoiceHeaderCancelled."No.") then
+                    CurrReport.Skip();
+                // IF NOT SalesCrMemoHeaderG.GET(SalesInvoiceHeaderCancelled."Canceled By") THEN
+                //     CurrReport.SKIP;
+                IF NOT SalesCrMemoHeaderG.GET(CancelldedDocL."Service Center Key", CancelldedDocL."Cancelled By Doc. No.") THEN
                     CurrReport.SKIP;
-                IF TableKeyInfoG.IsSalesCreditMemoExist(SalesCrMemoHeaderG) THEN
-                    CurrReport.SKIP;
+                // IF TableKeyInfoG.IsSalesCreditMemoExist(SalesCrMemoHeaderG) THEN
+                //     CurrReport.SKIP;
+                if SalesCrMemoHeaderG."Buffer Flag" then
+                    CurrReport.Skip();
                 // Start 121036
                 //SalesInvoiceHeaderCancelled.CALCFIELDS("Amount Including VAT");
                 //IF SalesInvoiceHeaderCancelled."Amount Including VAT" = 0 THEN
@@ -61,7 +76,9 @@ report 1044875 "TW Main Dashboard Fill Data"
                 IF CheckCancelledInvoice(SalesInvoiceHeaderCancelled) THEN
                     OverallCount(SalesInvoiceHeaderCancelled, TRUE);
                 SalesInvoiceQuantity(SalesInvoiceHeaderCancelled, TRUE);
-                TableKeyInfoG.RecordSalesCreditMemo(SalesCrMemoHeaderG);
+                //TableKeyInfoG.RecordSalesCreditMemo(SalesCrMemoHeaderG);
+                SalesCrMemoHeaderG."Buffer Flag" := true;
+                SalesCrMemoHeaderG.Modify();
             end;
         }
     }
@@ -91,10 +108,10 @@ report 1044875 "TW Main Dashboard Fill Data"
 
     var
         TWMainDashboardBufferG: Record "TW Main Dashboard Buffer";
-        SalesInvoiceHeaderG: Record "Sales Invoice Header";
-        SalesInvoiceLineG: Record "Sales Invoice Line";
-        SalesCrMemoHeaderG: Record "Sales Cr.Memo Header";
-        SalesCrMemoLineG: Record "Sales Cr.Memo Line";
+        // SalesInvoiceHeaderG: Record "Sales Invoice Header";
+        // SalesInvoiceLineG: Record "Sales Invoice Line";
+        SalesCrMemoHeaderG: Record "Sales Cr.Memo Header Buffer";
+        // SalesCrMemoLineG: Record "Sales Cr.Memo Line";
         ServiceCenterG: Record "Service Center";
         ServiceCenterCountG: Integer;
         C_INC_Tyre_Overall: Label 'Tyre_Overall';
@@ -110,11 +127,12 @@ report 1044875 "TW Main Dashboard Fill Data"
         C_INC_Report_usage: Label 'Report usage';
         TableKeyInfoG: Record "TW Table Key Information";
 
-    local procedure TyreOverall(var SalesInvoiceHeaderP: Record "Sales Invoice Header"; CancelP: Boolean)
+    local procedure TyreOverall(var SalesInvoiceHeaderP: Record "Sales Invoice Header Buffer"; CancelP: Boolean)
     var
-        SalesInvoiceLineL: Record "Sales Invoice Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
     begin
         SalesInvoiceLineL.RESET;
+        SalesInvoiceLineL.SetRange("Service Center Key", SalesInvoiceHeaderP."Service Center Key");
         SalesInvoiceLineL.SETRANGE("Document No.", SalesInvoiceHeaderP."No.");
         SalesInvoiceLineL.SETFILTER("No.", '<>%1', '');
         IF SalesInvoiceLineL.FINDFIRST THEN
@@ -128,12 +146,13 @@ report 1044875 "TW Main Dashboard Fill Data"
             UNTIL SalesInvoiceLineL.NEXT = 0;
     end;
 
-    local procedure NonTyreOverall(var SalesInvoiceHeaderP: Record "Sales Invoice Header"; CancelP: Boolean)
+    local procedure NonTyreOverall(var SalesInvoiceHeaderP: Record "Sales Invoice Header Buffer"; CancelP: Boolean)
     var
-        SalesInvoiceLineL: Record "Sales Invoice Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
         CancelRateL: Integer;
     begin
         SalesInvoiceLineL.RESET;
+        SalesInvoiceLineL.SetRange("Service Center Key", SalesInvoiceHeaderP."Service Center Key");
         SalesInvoiceLineL.SETRANGE("Document No.", SalesInvoiceHeaderP."No.");
         SalesInvoiceLineL.SETFILTER("No.", '<>%1', '');
         IF SalesInvoiceLineL.FINDFIRST THEN
@@ -147,10 +166,10 @@ report 1044875 "TW Main Dashboard Fill Data"
             UNTIL SalesInvoiceLineL.NEXT = 0;
     end;
 
-    local procedure OverallCount(var SalesInvoiceHeaderP: Record "Sales Invoice Header"; CancelP: Boolean)
+    local procedure OverallCount(var SalesInvoiceHeaderP: Record "Sales Invoice Header Buffer"; CancelP: Boolean)
     var
-        SalesInvoiceLineL: Record "Sales Invoice Line";
-        SalesCrMemoHdrL: Record "Sales Cr.Memo Header";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
+        SalesCrMemoHdrL: Record "Sales Cr.Memo Header Buffer";
         IsTyreL: Boolean;
         IsOilL: Boolean;
         IsOilFilterL: Boolean;
@@ -170,9 +189,9 @@ report 1044875 "TW Main Dashboard Fill Data"
             InsertSalesInvoiceHeaderBuffer(SalesInvoiceHeaderP, TWMainDashboardBufferG.FIELDNO("Overall Count"), 1.0 * CancelRateL);
     end;
 
-    local procedure SalesInvoiceQuantity(var SalesInvoiceHeaderP: Record "Sales Invoice Header"; CancelP: Boolean)
+    local procedure SalesInvoiceQuantity(var SalesInvoiceHeaderP: Record "Sales Invoice Header Buffer"; CancelP: Boolean)
     var
-        SalesInvoiceLineL: Record "Sales Invoice Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
         CancelRateL: Integer;
     begin
         IF CancelP AND CheckCancelledInvoice(SalesInvoiceHeaderP) THEN
@@ -181,6 +200,7 @@ report 1044875 "TW Main Dashboard Fill Data"
             CancelRateL := 1;
 
         SalesInvoiceLineL.RESET;
+        SalesInvoiceLineL.SetRange("Service Center Key", SalesInvoiceHeaderP."Service Center Key");
         SalesInvoiceLineL.SETRANGE("Document No.", SalesInvoiceHeaderP."No.");
         SalesInvoiceLineL.SETFILTER("No.", '<>%1', '');
         IF SalesInvoiceLineL.FINDFIRST THEN
@@ -196,7 +216,7 @@ report 1044875 "TW Main Dashboard Fill Data"
             UNTIL SalesInvoiceLineL.NEXT = 0;
     end;
 
-    local procedure InsertSalesInvoiceHeaderBuffer(var SalesInvoiceHeaderP: Record "Sales Invoice Header"; FieldNoP: Integer; FieldValueP: Variant)
+    local procedure InsertSalesInvoiceHeaderBuffer(var SalesInvoiceHeaderP: Record "Sales Invoice Header Buffer"; FieldNoP: Integer; FieldValueP: Variant)
     begin
         InsertBuffer(SalesInvoiceHeaderP."Service Center",
         SalesInvoiceHeaderP."Posting Date",
@@ -320,36 +340,47 @@ report 1044875 "TW Main Dashboard Fill Data"
         EXIT(FALSE);
     end;
 
-    local procedure CheckCancelledInvoice(SalesInvoiceHdrP: Record "Sales Invoice Header"): Boolean
+    local procedure CheckCancelledInvoice(SalesInvoiceHdrP: Record "Sales Invoice Header Buffer"): Boolean
     var
-        SalesCrMemoHdrL: Record "Sales Cr.Memo Header";
+        SalesCrMemoHdrL: Record "Sales Cr.Memo Header Buffer";
+        CancelledDocL: Record "Cancelled Document Buffer";
     begin
-        IF SalesCrMemoHdrL.GET(SalesInvoiceHdrP."Canceled By") THEN BEGIN
-            SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
-            SalesInvoiceHdrP.CALCFIELDS("Amount Including VAT");
-            IF SalesCrMemoHdrL."Amount Including VAT" = SalesInvoiceHdrP."Amount Including VAT" THEN
-                EXIT(TRUE);
-        END;
+        if CancelledDocL.Get(SalesInvoiceHdrP."Service Center Key", 112, SalesInvoiceHdrP."No.") then begin
+            if SalesCrMemoHdrL.Get(CancelledDocL."Service Center Key", CancelledDocL."Cancelled By Doc. No.") then begin
+                SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
+                SalesInvoiceHdrP.CALCFIELDS("Amount Including VAT");
+                IF SalesCrMemoHdrL."Amount Including VAT" = SalesInvoiceHdrP."Amount Including VAT" THEN
+                    EXIT(TRUE);
+            end;
+        end;
 
         EXIT(FALSE);
     end;
 
-    local procedure CheckCancelledInvoiceIgnoreAmount(SalesInvoiceHdrP: Record "Sales Invoice Header"): Boolean
+    local procedure CheckCancelledInvoiceIgnoreAmount(SalesInvoiceHdrP: Record "Sales Invoice Header Buffer"): Boolean
     var
-        SalesCrMemoHdrL: Record "Sales Cr.Memo Header";
+        SalesCrMemoHdrL: Record "Sales Cr.Memo Header Buffer";
+        CancelledDocL: Record "Cancelled Document Buffer";
     begin
-        IF SalesCrMemoHdrL.GET(SalesInvoiceHdrP."Canceled By") THEN BEGIN
-            SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
-            IF SalesCrMemoHdrL."Amount Including VAT" <> 0 THEN
-                EXIT(TRUE);
-        END;
+        if CancelledDocL.Get(SalesInvoiceHdrP."Service Center Key", 112, SalesInvoiceHdrP."No.") then begin
+            if SalesCrMemoHdrL.Get(CancelledDocL."Service Center Key", CancelledDocL."Cancelled By Doc. No.") then begin
+                SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
+                IF SalesCrMemoHdrL."Amount Including VAT" <> 0 THEN
+                    EXIT(TRUE);
+            end;
+        end;
+        // IF SalesCrMemoHdrL.GET(SalesInvoiceHdrP."Canceled By") THEN BEGIN
+        //     SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
+        //     IF SalesCrMemoHdrL."Amount Including VAT" <> 0 THEN
+        //         EXIT(TRUE);
+        // END;
 
         EXIT(FALSE);
     end;
 
-    local procedure IsSaleInvoiceDeleted(var SalesInvoiceHeaderP: Record "Sales Invoice Header"): Boolean
+    local procedure IsSaleInvoiceDeleted(var SalesInvoiceHeaderP: Record "Sales Invoice Header Buffer"): Boolean
     var
-        SalesInvoiceLineL: Record "Sales Invoice Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
     begin
         // Start 121036
         SalesInvoiceHeaderP.CALCFIELDS("Amount Including VAT");
@@ -357,6 +388,7 @@ report 1044875 "TW Main Dashboard Fill Data"
             EXIT(FALSE);
 
         SalesInvoiceLineL.RESET;
+        SalesInvoiceLineL.SetRange("Service Center Key", SalesInvoiceHeaderP."Service Center Key");
         SalesInvoiceLineL.SETRANGE("Document No.", SalesInvoiceHeaderP."No.");
         SalesInvoiceLineL.SETFILTER("No.", '<>%1', '');
         EXIT(SalesInvoiceLineL.ISEMPTY);

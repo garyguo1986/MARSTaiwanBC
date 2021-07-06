@@ -42,10 +42,10 @@ page 1044879 "Notifi. Serv. Center Limit"
                     ToolTip = 'Specifies the value of the Server Name field';
                     ApplicationArea = All;
                 }
-                part("Notifi. Serv. Center Limit Sub"; "Notifi. Serv. Center Limit Sub")
-                {
-                    SubPageLink = "Company Name" = field(Name), "Tenant ID" = field("Tenant ID");
-                }
+            }
+            part("Notifi. Serv. Center Limit Sub"; "Notifi. Serv. Center Limit Sub")
+            {
+                SubPageLink = "Company Name" = field(Name), "Tenant ID" = field("Tenant ID");
             }
         }
     }

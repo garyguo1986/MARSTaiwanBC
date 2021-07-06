@@ -30,7 +30,7 @@ table 1044881 "Item DOT Entry"
             TableRelation = IF (Type = FILTER(Item)) Item."No.";
             ValidateTableRelation = false;
         }
-        field(21; "Item Description"; Text[50])
+        field(21; "Item Description"; Text[100])
         {
             FieldClass = FlowField;
             CalcFormula = Lookup(Item.Description WHERE("No." = FIELD("Item No.")));

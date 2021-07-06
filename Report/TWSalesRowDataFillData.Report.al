@@ -15,10 +15,11 @@ report 1044877 "TW Sales Row Data Fill Data"
     // RGS_TWN-845   120529        GG     2019-09-11  Added field logic "Tire MI Sellout"
     // MI AS 2019-08-02 to optimize the update process
     // MARS_TWN-7689 121036      GG     2019-11-28  Remove "Amount Incl. VAT" filter
+    // RGS_TWN-8365  122779        GG     2021-06-01  Use buffer table instand orignal table
 
     Caption = 'TW Main Dashboard Fill Data';
     ProcessingOnly = true;
-
+    UsageCategory = ReportsAndAnalysis;
     dataset
     {
         dataitem("Service Center"; "Service Center")
@@ -103,10 +104,10 @@ report 1044877 "TW Sales Row Data Fill Data"
     var
         TWSalesDataHeaderBufferG: Record "TW Sales Data Header Buffer";
         TWSalesDataLineBufferG: Record "TW Sales Data Line Buffer";
-        SalesInvoiceHeaderG: Record "Sales Invoice Header";
-        SalesInvoiceLineG: Record "Sales Invoice Line";
-        SalesCrMemoHeaderG: Record "Sales Cr.Memo Header";
-        SalesCrMemoLineG: Record "Sales Cr.Memo Line";
+        // SalesInvoiceHeaderG: Record "Sales Invoice Header";
+        // SalesInvoiceLineG: Record "Sales Invoice Line";
+        // SalesCrMemoHeaderG: Record "Sales Cr.Memo Header";
+        // SalesCrMemoLineG: Record "Sales Cr.Memo Line";
         ServiceCenterG: Record "Service Center";
         ServiceCenterCountG: Integer;
         C_INC_Tyre_Overall: Label 'Tyre_Overall';
@@ -160,10 +161,10 @@ report 1044877 "TW Sales Row Data Fill Data"
 
     local procedure PostedInvoice(var TWSalesRawDataBufferP: Record "TW Sales Data Header Buffer")
     var
-        SalesInvoiceHdrL: Record "Sales Invoice Header";
-        SalesCrMemoHdrL: Record "Sales Cr.Memo Header";
-        SalesInvoiceLineL: Record "Sales Invoice Line";
-        SalesCrMemoLineL: Record "Sales Cr.Memo Line";
+        SalesInvoiceHdrL: Record "Sales Invoice Header Buffer";
+        SalesCrMemoHdrL: Record "Sales Cr.Memo Header Buffer";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
+        SalesCrMemoLineL: Record "Sales Cr.Memo Line Buffer";
         InvoiceCountL: Decimal;
         CreditCountL: Decimal;
         StartDateL: Date;
@@ -236,6 +237,7 @@ report 1044877 "TW Sales Row Data Fill Data"
                     SalesInvoiceHdrL.CALCFIELDS("Amount Including VAT");
                     SalesAmountL += SalesInvoiceHdrL."Amount Including VAT";
                     SalesInvoiceLineL.RESET;
+                    SalesInvoiceLineL.SetRange("Service Center Key", SalesInvoiceHdrL."Service Center Key");
                     SalesInvoiceLineL.SETRANGE("Document No.", SalesInvoiceHdrL."No.");
                     SalesInvoiceLineL.SETFILTER("No.", '<>%1', '');
                     IF SalesInvoiceLineL.FINDFIRST THEN
@@ -297,7 +299,8 @@ report 1044877 "TW Sales Row Data Fill Data"
         CreditSalesMIQtyL := 0;
         CreditSalesMIQtyTotalL := 0;
         // Stop 120529
-        SalesInvoiceHdrL.SETFILTER("Canceled By", '<>%1', '');
+        //SalesInvoiceHdrL.SETFILTER("Canceled By", '<>%1', '');
+        SalesInvoiceHdrL.SetRange(Cancelled, true);
         IF SalesInvoiceHdrL.FINDFIRST THEN
             REPEAT
                 IF CheckCancelledInvoice(SalesInvoiceHdrL, CreditAmountL) THEN BEGIN
@@ -352,6 +355,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         IF SalesCrMemoHdrL.FINDFIRST THEN
             REPEAT
                 SalesCrMemoLineL.RESET;
+                SalesCrMemoLineL.SetRange("Service Center Key", SalesCrMemoHdrL."Service Center Key");
                 SalesCrMemoLineL.SETRANGE("Document No.", SalesCrMemoHdrL."No.");
                 SalesCrMemoLineL.SETFILTER("No.", '<>%1', '');
                 IF SalesCrMemoLineL.FINDFIRST THEN
@@ -363,8 +367,8 @@ report 1044877 "TW Sales Row Data Fill Data"
 
     local procedure PostedInvoiceWithUpdatedVC(var TWSalesRawDataBufferP: Record "TW Sales Data Header Buffer")
     var
-        SalesInvoiceHdrL: Record "Sales Invoice Header";
-        SalesCrMemoHdrL: Record "Sales Cr.Memo Header";
+        SalesInvoiceHdrL: Record "Sales Invoice Header Buffer";
+        SalesCrMemoHdrL: Record "Sales Cr.Memo Header Buffer";
         StartDateL: Date;
         EndDateL: Date;
         InvoiceCountL: Decimal;
@@ -387,7 +391,8 @@ report 1044877 "TW Sales Row Data Fill Data"
         // Stop 121036
         InvoiceCountL := SalesInvoiceHdrL.COUNT;
         CreditCountL := 0;
-        SalesInvoiceHdrL.SETFILTER("Canceled By", '<>%1', '');
+        //SalesInvoiceHdrL.SETFILTER("Canceled By", '<>%1', '');
+        SalesInvoiceHdrL.SetRange(Cancelled, true);
         IF SalesInvoiceHdrL.FINDFIRST THEN
             REPEAT
                 IF CheckCancelledInvoice(SalesInvoiceHdrL, CreditAmountL) THEN
@@ -399,8 +404,8 @@ report 1044877 "TW Sales Row Data Fill Data"
 
     local procedure PostedInvoiceWithAdditionalSales(var TWSalesRawDataBufferP: Record "TW Sales Data Header Buffer")
     var
-        SalesInvoiceHdrL: Record "Sales Invoice Header";
-        SalesCrMemoHdrL: Record "Sales Cr.Memo Header";
+        SalesInvoiceHdrL: Record "Sales Invoice Header Buffer";
+        SalesCrMemoHdrL: Record "Sales Cr.Memo Header Buffer";
         StartDateL: Date;
         EndDateL: Date;
         InvoiceCountL: Decimal;
@@ -427,30 +432,49 @@ report 1044877 "TW Sales Row Data Fill Data"
         InsertSalesInvoiceHeaderBuffer(TWSalesRawDataBufferP, TWSalesDataHeaderBufferG.FIELDNO("Posted Inv. with add. Sales"), InvoiceCountL);
     end;
 
-    local procedure CheckCancelledInvoice(SalesInvoiceHdrP: Record "Sales Invoice Header"; var CreditAmountP: Decimal): Boolean
+    local procedure CheckCancelledInvoice(SalesInvoiceHdrP: Record "Sales Invoice Header Buffer"; var CreditAmountP: Decimal): Boolean
     var
-        SalesCrMemoHdrL: Record "Sales Cr.Memo Header";
-        SalesCrMemoLineL: Record "Sales Cr.Memo Line";
-        SalesInvLineL: Record "Sales Invoice Line";
+        SalesCrMemoHdrL: Record "Sales Cr.Memo Header Buffer";
+        SalesCrMemoLineL: Record "Sales Cr.Memo Line Buffer";
+        SalesInvLineL: Record "Sales Invoice Line Buffer";
+        CancelledDocL: Record "Cancelled Document Buffer";
         InvTotalQtyL: Decimal;
     begin
         CreditAmountP := 0;
-        // Start 119130
-        SalesCrMemoHdrL.SETRANGE("Corr. of Sales Invoice No.", SalesInvoiceHdrP."No.");
-        IF SalesCrMemoHdrL.FINDSET THEN BEGIN
-            SalesInvLineL.SETRANGE("Document No.", SalesInvoiceHdrP."No.");
-            SalesInvLineL.CALCSUMS(Quantity);
-            REPEAT
-                SalesCrMemoLineL.SETRANGE("Document No.", SalesCrMemoHdrL."No.");
-                SalesCrMemoLineL.CALCSUMS(Quantity);
-                SalesInvLineL.Quantity -= SalesCrMemoLineL.Quantity;
+        if CancelledDocL.Get(SalesInvoiceHdrP."Service Center Key", 112, SalesInvoiceHdrP."No.") then begin
+            if SalesCrMemoHdrL.Get(CancelledDocL."Service Center Key", CancelledDocL."Cancelled By Doc. No.") then begin
+                SalesInvLineL.SetRange("Service Center Key", SalesInvoiceHdrP."Service Center Key");
+                SalesInvLineL.SETRANGE("Document No.", SalesInvoiceHdrP."No.");
+                SalesInvLineL.CALCSUMS(Quantity);
+                REPEAT
+                    SalesCrMemoLineL.SetRange("Service Center Key", SalesCrMemoHdrL."Service Center Key");
+                    SalesCrMemoLineL.SETRANGE("Document No.", SalesCrMemoHdrL."No.");
+                    SalesCrMemoLineL.CALCSUMS(Quantity);
+                    SalesInvLineL.Quantity -= SalesCrMemoLineL.Quantity;
 
-                SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
-                CreditAmountP += SalesCrMemoHdrL."Amount Including VAT";
-            UNTIL SalesCrMemoHdrL.NEXT = 0;
-            IF SalesInvLineL.Quantity > 0 THEN
-                EXIT(TRUE);
-        END;
+                    SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
+                    CreditAmountP += SalesCrMemoHdrL."Amount Including VAT";
+                UNTIL SalesCrMemoHdrL.NEXT = 0;
+                IF SalesInvLineL.Quantity > 0 THEN
+                    EXIT(TRUE);
+            end;
+        end;
+        // Start 119130
+        // SalesCrMemoHdrL.SETRANGE("Corr. of Sales Invoice No.", SalesInvoiceHdrP."No.");
+        // IF SalesCrMemoHdrL.FINDSET THEN BEGIN
+        //     SalesInvLineL.SETRANGE("Document No.", SalesInvoiceHdrP."No.");
+        //     SalesInvLineL.CALCSUMS(Quantity);
+        //     REPEAT
+        //         SalesCrMemoLineL.SETRANGE("Document No.", SalesCrMemoHdrL."No.");
+        //         SalesCrMemoLineL.CALCSUMS(Quantity);
+        //         SalesInvLineL.Quantity -= SalesCrMemoLineL.Quantity;
+
+        //         SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
+        //         CreditAmountP += SalesCrMemoHdrL."Amount Including VAT";
+        //     UNTIL SalesCrMemoHdrL.NEXT = 0;
+        //     IF SalesInvLineL.Quantity > 0 THEN
+        //         EXIT(TRUE);
+        // END;
         /*
         IF SalesCrMemoHdrL.GET(SalesInvoiceHdrP."Canceled By") THEN BEGIN
           SalesCrMemoHdrL.CALCFIELDS("Amount Including VAT");
@@ -465,10 +489,10 @@ report 1044877 "TW Sales Row Data Fill Data"
 
     end;
 
-    local procedure CheckCancelledInvoiceLine(SalesInvoiceHdrP: Record "Sales Invoice Header"; var CreditAmountP: Decimal; var CreditAmountNTPP: Decimal; var CreditAmountServiceP: Decimal; var CreditQuantityP: Decimal; var CreditProfitP: Decimal; var CreditSOBTyreAmountP: Decimal; var CreditSOBNTPAmountP: Decimal; var CreditTyreQuantityP: Decimal; var CreditTyreMIFBGQuantityP: Decimal; var CreditMIQuantityP: Decimal): Boolean
+    local procedure CheckCancelledInvoiceLine(SalesInvoiceHdrP: Record "Sales Invoice Header Buffer"; var CreditAmountP: Decimal; var CreditAmountNTPP: Decimal; var CreditAmountServiceP: Decimal; var CreditQuantityP: Decimal; var CreditProfitP: Decimal; var CreditSOBTyreAmountP: Decimal; var CreditSOBNTPAmountP: Decimal; var CreditTyreQuantityP: Decimal; var CreditTyreMIFBGQuantityP: Decimal; var CreditMIQuantityP: Decimal): Boolean
     var
-        SalesCrMemoHdrL: Record "Sales Cr.Memo Header";
-        SalesCrMemoLineL: Record "Sales Cr.Memo Line";
+        SalesCrMemoHdrL: Record "Sales Cr.Memo Header Buffer";
+        SalesCrMemoLineL: Record "Sales Cr.Memo Line Buffer";
     begin
         CreditAmountP := 0;
         CreditTyreQuantityP := 0;
@@ -489,6 +513,7 @@ report 1044877 "TW Sales Row Data Fill Data"
                 //IF SalesCrMemoHdrL.GET(SalesInvoiceHdrP."Canceled By") THEN BEGIN
                 // Stop 119130
                 SalesCrMemoLineL.RESET;
+                SalesCrMemoLineL.SetRange("Service Center Key", SalesCrMemoHdrL."Service Center Key");
                 SalesCrMemoLineL.SETRANGE("Document No.", SalesCrMemoHdrL."No.");
                 SalesCrMemoLineL.SETFILTER("No.", '<>%1', '');
                 IF SalesCrMemoLineL.FINDFIRST THEN
@@ -526,13 +551,14 @@ report 1044877 "TW Sales Row Data Fill Data"
         // Stop  119130
     end;
 
-    local procedure CheckAdditionalSales(SalesInvoiceHdrP: Record "Sales Invoice Header"): Boolean
+    local procedure CheckAdditionalSales(SalesInvoiceHdrP: Record "Sales Invoice Header Buffer"): Boolean
     var
-        SalesInvoiceLineL: Record "Sales Invoice Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
         IsExistadditionalSalesL: Boolean;
         IsNotExistadditionalSalesL: Boolean;
     begin
         SalesInvoiceLineL.RESET;
+        SalesInvoiceLineL.SetRange("Service Center Key", SalesInvoiceHdrP."Service Center Key");
         SalesInvoiceLineL.SETRANGE("Document No.", SalesInvoiceHdrP."No.");
         SalesInvoiceLineL.SETRANGE("Additional Sale", TRUE);
         IF NOT SalesInvoiceLineL.ISEMPTY THEN
@@ -584,8 +610,8 @@ report 1044877 "TW Sales Row Data Fill Data"
         PositionGroupCodeL: Code[10];
         ItemL: Record Item;
         ResourceL: Record Resource;
-        SalesInvoiceLineL: Record "Sales Invoice Line";
-        SalesCrMemoLineL: Record "Sales Cr.Memo Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
+        SalesCrMemoLineL: Record "Sales Cr.Memo Line Buffer";
     begin
         IF BufferL.GET(YearP, MonthP, ServCenterCodeP) THEN BEGIN
             CLEAR(RecordRefL);
@@ -820,7 +846,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         EXIT(FALSE);
     end;
 
-    local procedure InsertOrUpdateTWSalesDataLineInvoiceBuffer(SalesInvoiceLineP: Record "Sales Invoice Line")
+    local procedure InsertOrUpdateTWSalesDataLineInvoiceBuffer(SalesInvoiceLineP: Record "Sales Invoice Line Buffer")
     var
         YearL: Integer;
         MonthL: Integer;
@@ -828,7 +854,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         ManufacturerCodeL: Code[10];
         MainGroupCodeL: Code[10];
         PositionGroupCodeL: Code[10];
-        SalesInvoiceLineL: Record "Sales Invoice Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
         ItemL: Record Item;
         ResourceL: Record Resource;
         ServiceCenterL: Record "Service Center";
@@ -889,7 +915,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         END;
     end;
 
-    local procedure InsertOrUpdateTWSalesDataLineCreditBuffer(SalesCrMemoLineP: Record "Sales Cr.Memo Line")
+    local procedure InsertOrUpdateTWSalesDataLineCreditBuffer(SalesCrMemoLineP: Record "Sales Cr.Memo Line Buffer")
     var
         YearL: Integer;
         MonthL: Integer;
@@ -897,7 +923,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         ManufacturerCodeL: Code[10];
         MainGroupCodeL: Code[10];
         PositionGroupCodeL: Code[10];
-        SalesInvoiceLineL: Record "Sales Invoice Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
         ItemL: Record Item;
         ResourceL: Record Resource;
         ServiceCenterL: Record "Service Center";
@@ -965,9 +991,9 @@ report 1044877 "TW Sales Row Data Fill Data"
         EndDateG := _EndDateG;
     end;
 
-    local procedure IsSaleInvoiceDeleted(var SalesInvoiceHeaderP: Record "Sales Invoice Header"): Boolean
+    local procedure IsSaleInvoiceDeleted(var SalesInvoiceHeaderP: Record "Sales Invoice Header Buffer"): Boolean
     var
-        SalesInvoiceLineL: Record "Sales Invoice Line";
+        SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
     begin
         // Start 121036
         SalesInvoiceHeaderP.CALCFIELDS("Amount Including VAT");
@@ -975,6 +1001,7 @@ report 1044877 "TW Sales Row Data Fill Data"
             EXIT(FALSE);
 
         SalesInvoiceLineL.RESET;
+        SalesInvoiceLineL.SetRange("Service Center Key", SalesInvoiceHeaderP."Service Center Key");
         SalesInvoiceLineL.SETRANGE("Document No.", SalesInvoiceHeaderP."No.");
         SalesInvoiceLineL.SETFILTER("No.", '<>%1', '');
         EXIT(SalesInvoiceLineL.ISEMPTY);

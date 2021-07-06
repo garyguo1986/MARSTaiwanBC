@@ -16,7 +16,8 @@
             "port": 7349,
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true,
-            "tenant": "dealer1"
+            "tenant": "dealer1",
+            "schemaUpdateMode": "ForceSync"
         }
     ]
 }

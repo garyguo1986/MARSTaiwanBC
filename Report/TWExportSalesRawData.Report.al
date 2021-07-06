@@ -15,7 +15,7 @@ report 1044878 "TW Export Sales Raw Data"
 
     Caption = 'Export Sales Raw Data';
     ProcessingOnly = true;
-
+    UsageCategory = ReportsAndAnalysis;
     dataset
     {
         dataitem(Integer; Integer)
