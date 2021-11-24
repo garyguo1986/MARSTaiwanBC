@@ -5,7 +5,7 @@
     "EULA": "https://www.incadea.com/",
     "url": "https://incadea.com/solutions/tire-and-aftermarket-solution/",
     "publisher": "Incadea China",
-    "version": "1.0.0.11",
+    "version": "1.0.0.21",
     "logo": "",
     "help": "",
     "description": "MARS Taiwan Bussiness Central Extension",
@@ -33,6 +33,39 @@
             "name": "VehicleCheck",
             "publisher": "incadea GmbH",
             "version": "1.0.0.12927"
+        }
+        ,
+        {
+            "id": "7f4856b1-a9ab-46d5-bdc1-68477be92b2f",
+            "name": "VehicleCheckExpand",
+            "publisher": "incadea China",
+            "version": "1.0.0.5"
+        }
+    ],
+    "idRanges": [
+        {
+            "from": 50000,
+            "to": 50049
+        },
+        {
+            "from": 1045241,
+            "to":1045241
+        },
+        {
+            "from": 1045238,
+            "to": 1045238
+        },
+        {
+            "from":1045257,
+            "to":1045257
+        },
+        {
+            "from": 1044860,
+            "to": 1044909
+        },
+        {
+            "from": 1073870,
+            "to": 1073919
         }
     ],
     "platform": "15.0.0.0",

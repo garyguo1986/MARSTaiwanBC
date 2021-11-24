@@ -6,18 +6,18 @@
             "request": "launch",
             "type": "al",
             "environmentType": "OnPrem",
-            "server": "http://localhost:8080/BC150TW",
-            "serverInstance": "BC150TW",
+            "server": "http://localhost:8080/BCTW",
+            "serverInstance": "BCTW",
             "authentication": "Windows",
             "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": true,
             "launchBrowser": true,
-            "port": 7349,
+            "port": 15149,
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true,
             "tenant": "dealer1",
-            "schemaUpdateMode": "ForceSync"
+            "schemaUpdateMode":"ForceSync"
         }
     ]
 }

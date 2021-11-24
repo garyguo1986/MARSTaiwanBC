@@ -487,6 +487,7 @@ codeunit 1044866 "BC Upgrade Management"
         // END;
         if NotificationSendingHeaderP."Contact Mobile Phone No." = '' then begin
             NotArchivedP := true;
+            IsFailToSendP := true;
             ErrorTypeP := 1044860;
             exit;
         end;

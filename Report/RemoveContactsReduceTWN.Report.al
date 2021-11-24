@@ -38,7 +38,7 @@ report 1044867 "Remove Contacts - Reduce (TWN)"
 
             trigger OnPreDataItem()
             begin
-                CurrReport.BREAK;
+                //CurrReport.BREAK;
             end;
         }
         dataitem(Contact; Contact)
@@ -48,6 +48,7 @@ report 1044867 "Remove Contacts - Reduce (TWN)"
 
             trigger OnPreDataItem()
             begin
+                OnPreDataContact("Segment Header"."No.", Contact, ExternalInfoG);
                 CurrReport.BREAK;
             end;
         }
@@ -56,6 +57,7 @@ report 1044867 "Remove Contacts - Reduce (TWN)"
 
             trigger OnPreDataItem()
             begin
+                OnPreDataVehicle("Segment Header"."No.", Vehicle, ExternalInfoG);
                 CurrReport.BREAK;
             end;
         }
@@ -66,6 +68,7 @@ report 1044867 "Remove Contacts - Reduce (TWN)"
 
             trigger OnPreDataItem()
             begin
+                OnPreDataSalesInvHdr("Segment Header"."No.", "Sales Invoice Header", ExternalInfoG);
                 // Start 111127
                 CurrReport.BREAK;
                 // Stop 111127
@@ -79,6 +82,7 @@ report 1044867 "Remove Contacts - Reduce (TWN)"
 
             trigger OnPreDataItem()
             begin
+                OnPreDataSalesInvLine("Segment Header"."No.", "Sales Invoice Line", ExternalInfoG);
                 // Start 114096
                 CurrReport.BREAK;
                 // Stop 114096
@@ -120,6 +124,8 @@ report 1044867 "Remove Contacts - Reduce (TWN)"
 
     trigger OnPreReport()
     begin
+        OnBeforeReport(Contact, Vehicle, "Sales Invoice Header", "Sales Invoice Line", ExternalInfoG);
+
         CLEAR(ReduceRefineSegment);
         ReduceRefineSegment.SETTABLEVIEW("Segment Header");
         ReduceRefineSegment.SETTABLEVIEW(Contact);
@@ -157,11 +163,17 @@ report 1044867 "Remove Contacts - Reduce (TWN)"
         ReduceRefineSegment.RUNMODAL;
     end;
 
+    trigger OnPostReport()
+    begin
+        OnBoforePostReport("Segment Header"."No.", Contact, Vehicle, "Sales Invoice Header", "Sales Invoice Line", ExternalInfoG);
+    end;
+
     var
         ReduceRefineSegment: Report "Remove Contacts (TWN)";
         EntireCompanies: Boolean;
         CompanyOfContact: Boolean;
         LicPermission: Record "License Permission";
+        ExternalInfoG: Text[100];
 
     [Scope('OnPrem')]
     procedure SetOptions(OptionEntireCompanies: Boolean)
@@ -173,6 +185,37 @@ report 1044867 "Remove Contacts - Reduce (TWN)"
     procedure SetAddOptions(OptionCompanyOfContact: Boolean)
     begin
         CompanyOfContact := OptionCompanyOfContact;
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeReport(var ContactP: Record Contact; var VehicleP: Record Vehicle; var SalesInvoiceHdrP: Record "Sales Invoice Header"; var SalesInvoiceLineP: Record "Sales Invoice Line"; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnPreDataContact(var SegmentNoP: Code[20]; var ContactP: Record Contact; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnPreDataVehicle(var SegmentNoP: Code[20]; var Vehicle: Record Vehicle; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+
+    [IntegrationEvent(false, false)]
+    local procedure OnPreDataSalesInvHdr(var SegmentNoP: Code[20]; var SalesInvoiceHdrP: Record "Sales Invoice Header"; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnPreDataSalesInvLine(var SegmentNoP: Code[20]; var SalesInvoiceLineP: Record "Sales Invoice Line"; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBoforePostReport(var SegmentNoP: Code[20]; var ContactP: Record Contact; var VehicleP: Record Vehicle; var SalesInvoiceHdrP: Record "Sales Invoice Header"; var SalesInvoiceLineP: Record "Sales Invoice Line"; var ExternalInfoP: Text[100])
+    begin
     end;
 }
 

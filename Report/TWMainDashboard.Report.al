@@ -457,7 +457,8 @@ report 1044876 "TW Main Dashboard"
         YTDLastPeriodEndDateG: Date;
         StartDateG: Date;
         EndDateG: Date;
-        ServiceCenterG: Record "Service Center";
+        //ServiceCenterG: Record "Service Center";
+        ServiceCenterG: Record "Service Center Buffer";
         ServiceCenterCountG: array[4] of Integer;
         CurrentMonthAllBrandBufferG: Record "TW Main Dashboard Buffer";
         LastPeriodAllBrandCurrentMonthBufferG: Record "TW Main Dashboard Buffer";
@@ -473,7 +474,8 @@ report 1044876 "TW Main Dashboard"
         YTDPosCountG: Integer;
         LastPeriodYTDPosCountG: Integer;
         ServCenterCodeFilterG: Text;
-        TempServiceCenterG: Record "Service Center" temporary;
+        //TempServiceCenterG: Record "Service Center" temporary;
+        TempServiceCenterG: Record "Service Center Buffer" temporary;
         CurrentMonthTyreAmountG: Decimal;
         LastPeriodMonthTyreAmountG: Decimal;
         YTDTyreAmountG: Decimal;
@@ -505,7 +507,8 @@ report 1044876 "TW Main Dashboard"
 
     local procedure ConvertServCenter2Indicator(ServiceCenterCodeP: Code[10])
     var
-        ServCenterL: Record "Service Center";
+        //ServCenterL: Record "Service Center";
+        ServCenterL: Record "Service Center Buffer";
         PostCodeL: Code[20];
         ServCenterCodeFilterL: Text;
     begin
@@ -573,7 +576,8 @@ report 1044876 "TW Main Dashboard"
         END;
     end;
 
-    local procedure PosCountCalc(ServCenterP: Record "Service Center")
+    //local procedure PosCountCalc(ServCenterP: Record "Service Center")
+    local procedure PosCountCalc(ServCenterP: Record "Service Center Buffer")
     var
         TWMainDashboardBufferL: Record "TW Main Dashboard Buffer";
     begin
@@ -614,7 +618,8 @@ report 1044876 "TW Main Dashboard"
 
     local procedure ConvertIndicator2ServCenter(IndicatorP: Text; var ServCenterFilterP: Text)
     var
-        ServCenterL: Record "Service Center";
+        //ServCenterL: Record "Service Center";
+        ServCenterL: Record "Service Center Buffer";
         PostCodeL: Code[20];
         ServCenterCodeFilterL: Text;
     begin

@@ -17,14 +17,14 @@ report 1044877 "TW Sales Row Data Fill Data"
     // MARS_TWN-7689 121036      GG     2019-11-28  Remove "Amount Incl. VAT" filter
     // RGS_TWN-8365  122779        GG     2021-06-01  Use buffer table instand orignal table
 
-    Caption = 'TW Main Dashboard Fill Data';
+    Caption = 'TW Sales Row Data Fill Data';
     ProcessingOnly = true;
     UsageCategory = ReportsAndAnalysis;
     dataset
     {
-        dataitem("Service Center"; "Service Center")
+        //dataitem("Service Center"; "Service Center")
+        dataitem("Service Center"; "Service Center Buffer")
         {
-
             trigger OnAfterGetRecord()
             begin
                 PeriodG.RESET;
@@ -39,15 +39,16 @@ report 1044877 "TW Sales Row Data Fill Data"
             trigger OnPostDataItem()
             begin
                 TWSalesDataHeaderBufferG.RESET;
-                ///MI <--
+                ///MI 
                 TWSalesDataHeaderBufferG.SETRANGE(Date, StartDateG, EndDateG);
-                ///MI -->
-                TWSalesDataHeaderBufferG.FIND('-');
-                REPEAT
-                    PostedInvoice(TWSalesDataHeaderBufferG);
-                    PostedInvoiceWithUpdatedVC(TWSalesDataHeaderBufferG);
-                    PostedInvoiceWithAdditionalSales(TWSalesDataHeaderBufferG);
-                UNTIL TWSalesDataHeaderBufferG.NEXT = 0;
+                ///MI 
+                //TWSalesDataHeaderBufferG.FIND('-');
+                if TWSalesDataHeaderBufferG.FindFirst() then
+                    REPEAT
+                        PostedInvoice(TWSalesDataHeaderBufferG);
+                        PostedInvoiceWithUpdatedVC(TWSalesDataHeaderBufferG);
+                        PostedInvoiceWithAdditionalSales(TWSalesDataHeaderBufferG);
+                    UNTIL TWSalesDataHeaderBufferG.NEXT = 0;
             end;
         }
     }
@@ -108,7 +109,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         // SalesInvoiceLineG: Record "Sales Invoice Line";
         // SalesCrMemoHeaderG: Record "Sales Cr.Memo Header";
         // SalesCrMemoLineG: Record "Sales Cr.Memo Line";
-        ServiceCenterG: Record "Service Center";
+        //ServiceCenterG: Record "Service Center";
         ServiceCenterCountG: Integer;
         C_INC_Tyre_Overall: Label 'Tyre_Overall';
         C_INC_Tyre_by_POS: Label 'Tyre_by POS';
@@ -126,7 +127,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         StartDateG: Date;
         EndDateG: Date;
 
-    local procedure InsertOrUpdateTWSalesRawDataBuffer(PriodStartP: Date; var ServiceCenterP: Record "Service Center")
+    local procedure InsertOrUpdateTWSalesRawDataBuffer(PriodStartP: Date; var ServiceCenterP: Record "Service Center Buffer")
     var
         YearL: Integer;
         MonthL: Integer;
@@ -385,6 +386,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         // Field 'Vehicle Check Status' is removed.
         // SalesInvoiceHdrL.SETRANGE("Vehicle Check Status", SalesInvoiceHdrL."Vehicle Check Status"::Done);
         //--TWN1.00.122187.QX
+        SalesInvoiceHdrL.SetFilter("VC Vehicle Check Status", '%1|%2', SalesInvoiceHdrL."VC Vehicle Check Status"::"On-Going", SalesInvoiceHdrL."VC Vehicle Check Status"::Done);
 
         // Start 121036
         //SalesInvoiceHdrL.SETFILTER("Amount Including VAT",'<>%1',0);
@@ -601,7 +603,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         TempDec2L: Decimal;
         TempIntL: Integer;
         TempInt2L: Integer;
-        ServiceCenterL: Record "Service Center";
+        //ServiceCenterL: Record "Service Center";
         YearL: Integer;
         MonthL: Integer;
         ServCenterCodeL: Code[10];
@@ -857,7 +859,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
         ItemL: Record Item;
         ResourceL: Record Resource;
-        ServiceCenterL: Record "Service Center";
+        ServiceCenterL: Record "Service Center Buffer";
         ZoneCodeL: Code[20];
         PostCodeL: Code[20];
         ShopNameL: Text;
@@ -926,7 +928,7 @@ report 1044877 "TW Sales Row Data Fill Data"
         SalesInvoiceLineL: Record "Sales Invoice Line Buffer";
         ItemL: Record Item;
         ResourceL: Record Resource;
-        ServiceCenterL: Record "Service Center";
+        ServiceCenterL: Record "Service Center Buffer";
         ZoneCodeL: Code[20];
         PostCodeL: Code[20];
         ShopNameL: Text;

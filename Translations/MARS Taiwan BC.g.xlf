@@ -858,6 +858,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Manufacturer Amount Buffer - Field YTDSOATotal - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 1133084041 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>MARS TWN Temp Flag Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table MARS TWN Temp Flag Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1133084041 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table MARS TWN Temp Flag Setup - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1133084041 - Field 2545353064 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vehicle Check Status Fix</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table MARS TWN Temp Flag Setup - Field Vehicle Check Status Fixed - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 1908443881 - Field 3997336476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4243,6 +4258,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Invoice Header Buffer - Field VAT Registration No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3458452346 - Field 1843012593 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vehicle Check Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Invoice Header Buffer - Field VC Vehicle Check Status - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3458452346 - Field 2948537412 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Veh. Statistic Entry No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -5482,6 +5502,421 @@
           <source>Milage,Duration</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service Alert Setup - Field Services Based On - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service Center Buffer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Address - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2306852000 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Address 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1127986529 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Advertising Text Sales</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Advertising Text Sales - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1971159583 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Allow Web Price Availability</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Allow Web Price Availability - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1971159583 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Never,GetStockAvailability,GetExactStockAvailability,Both</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Allow Web Price Availability - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1519021743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>BAH Ship Only allowed</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field BAH Ship Only allowed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 143840180 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show BAH Rem. Qty </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field BAH Show Rem. Qty - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 676513219 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Call Center</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Call Center - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2425867339 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cash Reg. Slip Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Cash Reg. Slip Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2425867339 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Small Cash Reg. Receipt,Large Cash Reg. Receipt</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Cash Reg. Slip Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1972639146 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cash Reg. Slip Type Document</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Cash Reg. Slip Type Document - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1972639146 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source> ,Cash Receipt Slip,Full Cash Receipt,Cash Invoice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Cash Reg. Slip Type Document - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1298892152 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Casing Location</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Casing Location - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2951816818 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Central Maintenance</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Central Maintenance - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 714791889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>City</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field City - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3993128796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Contact - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2993384493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract Gain/Loss Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Contract Gain/Loss Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 284764054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Country/Region Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Country/Region Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 499448942 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>County</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field County - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3119713706 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Account Manager</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Customer Account Manager - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1186249828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer No. Transfer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Customer No. Transfer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 995090288 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Filter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Date Filter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2031313983 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dealer Customer No. for Retread Orders</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Dealer Cust. No. for RO - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 4249524661 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dealer Dimension</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Dealer Dimension - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 257750516 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dealer Dimension Value</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Dealer Dimension Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3859361385 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deleted by HQ</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Deleted by HQ - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 296913275 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DHL Path Export</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field DHL Path Export - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 163392007 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Header Text</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Document Header Text - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 926251227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DPD Path Export</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field DPD Path Export - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1395938096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DPD-ABC Path Export</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field DPD-ABC Path Export - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1541011875 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>E-Mail</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field E-Mail - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3429784581 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>E-Mail 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field E-Mail 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 616494464 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fastfit Go-Live Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Fastfit Go-Live Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1807381932 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fax No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Fax No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 4206369982 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fax No. 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Fax No. 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2894844268 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Franchise Consultant</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Franchise Consultant - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 140612604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Franchise Go-Live Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Franchise Go-Live Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1400530508 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Franchise No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Franchise No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 143873409 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Franchisee Declared Bays</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Franchisee Declared Bays - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 417681696 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Geo-Localization Lat.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Geo-Localization Lat. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 702012089 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Geo-Localization Long.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Geo-Localization Long. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1303377601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Global Dimension 1 Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Global Dimension 1 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1337243520 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Global Dimension 2 Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Global Dimension 2 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 4285671331 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>GLS Path Export</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field GLS Path Export - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1543050584 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Headquarter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Headquarter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2909674232 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Home Page</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Home Page - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2412756478 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Information Text Window Header</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Information Text Window Header - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2161572060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Location Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Location Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3321244020 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Login Info Text</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Login Info Text - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2301093635 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Mandatory Bin Code Check for Sales Posting</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Mandatory Bin Code Check - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 352546477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Mobile Phone No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Mobile Phone No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 828072171 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Mobile Phone No. 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Mobile Phone No. 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 966287263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Name 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2624706574 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>National Consultant Manager</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field National Consultant Manager - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1482299535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>National Sales Manager</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field National Sales Manager - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3986423421 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Phone No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 395248923 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone No. 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Phone No. 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1594621544 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Picture</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Picture - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3660300303 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Post Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1066234798 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Invoice Allowed</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Purchase Invoice Allowed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 299583899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Regional Consultant Manager</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Regional Consultant Manager - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 4195458858 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Regional Sales Manager</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Regional Sales Manager - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2081966120 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return Order Location Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Return Order Location Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2295639681 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Credit Memo Allowed</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Sales Credit Memo Allowed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 533558067 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Invoice Allowed</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Sales Invoice Allowed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2144102202 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SC Pricegroup (Item)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field SC Pricegroup (Item) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 64584010 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SC Pricegroup (Service)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field SC Pricegroup (Service) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2307373475 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service Center Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Service Center Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2995469460 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Standard Catalog</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Standard Catalog - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 989108700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Standard Customer No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Standard Customer No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 3605947309 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Suppr. Service Check Warning</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Suppr. Service Check Warning - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1910258134 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Suppress Serv. Center Warning</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Suppress Serv. Center Warn. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 514487219 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Surface Area of POS (m2)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Surface Area of POS (m2) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 347503537 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>TNT Path Export</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field TNT Path Export - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 2988340208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>TOF Path Export</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field TOF Path Export - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 279141593 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>UPS Path Export</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field UPS Path Export - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1215020574 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Web Price List Item</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Web Price List Item - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 465091238 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Web Price List Service</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Web Price List Service - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1864121690 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Zone Dimension</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Zone Dimension - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3562691114 - Field 1007918743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Zone Dimension Value</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Center Buffer - Field Zone Dimension Value - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1342719317 - Field 1485791680 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Flag</source>
@@ -8398,6 +8833,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Segment Header Tenant - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4048841544 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service Center Buffer List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Center Buffer List - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 674429184 - Control 4204163331 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Position Group S &amp; T Index</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -9603,6 +10043,126 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Data Export - Sales History - ReportDataItem Sell-to Contact - Property RequestFilterHeading</note>
         </trans-unit>
+        <trans-unit id="Report 2449624842 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export MUT Entries to Excel</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export MUT Entries to Excel - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2449624842 - NamedType 2222109626" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Company Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export MUT Entries to Excel - NamedType C_BSS_EXC001</note>
+        </trans-unit>
+        <trans-unit id="Report 2449624842 - NamedType 309019775" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Report Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export MUT Entries to Excel - NamedType C_BSS_EXC002</note>
+        </trans-unit>
+        <trans-unit id="Report 2449624842 - NamedType 3615294355" size-unit="char" translate="yes" xml:space="preserve">
+          <source>MUT Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export MUT Entries to Excel - NamedType C_BSS_INF001</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fill Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 1658869567" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Following SC(s) have no Zone or Dealer Dimension:\\%1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_ERR001</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 3615294355" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create Daily Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF001</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 1233416910" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create Monthly Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF002</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 595720293" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check Value Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF003</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 1702204504" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check Resource Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF004</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 1064507887" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check Pre Resource Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF005</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 2977597738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create historical Daily Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF006</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 2339901121" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create historical Monthly Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF007</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 764629316" size-unit="char" translate="yes" xml:space="preserve">
+          <source>records</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF008</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 126932699" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check G/L Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF009</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - NamedType 3976458699" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check Service Center</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - NamedType C_BSS_INF010</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Control 3399663244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service Center Check</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Control CheckServiceCenter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Control 1122775395 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Daily Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Control DailyCompleteClear - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Control 2915961087 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create Daily Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Control DailyCreate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Control 4181943939 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Historic Data</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Control Historic Data - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Control 192714327 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Control MonthlyCompleteClear - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Control 271087227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create Monthly Statistics</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Control MonthlyCreate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3837019396 - Control 318445371 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Performance Buffer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fill Statistics2 - Control UpdatePerformanceBufferP - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 701997512 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fill TW Performance Buffer</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -9619,7 +10179,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report Fill TW Performance Buffer - Control IsDeleteBufferG - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 1922633202 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fill TW Performance Buffer</source>
+          <source>Fill TW Performance Buffer2</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Fill TW Performance Buffer2 - Property Caption</note>
         </trans-unit>
@@ -9677,6 +10237,11 @@
           <source>-- TO BE CONTINUED --</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Fix Services Due Entry - NamedType TO_BE_CONTINUED___CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3864786960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fix VC Status for Performance Report</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Fix VC Status for Perf. Report - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 3823046612 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item - Sales Statistics</source>
@@ -10067,6 +10632,86 @@
           <source>Time to send</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Service Reminder2 - Control TimeToSend - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer Order</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - NamedType 1647105916" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Salesperson</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - NamedType C_BSS_TXT001</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - NamedType 833194851" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Header Dimensions</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - NamedType HdrDimensionsCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - NamedType 3701122699" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line Dimensions</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - NamedType LineDimensionsCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>COPY</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer Order %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - ReportDataItem 151805736 - Property 1806354803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer Order</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - ReportDataItem Transfer Header - Property RequestFilterHeading</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - ReportLabel 2020178030" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - ReportLabel PostingDateCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - ReportLabel 2725117825" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shipment Method</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - ReportLabel ShptMethodDescCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - ReportLabel 4163234223" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer-Order No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - ReportLabel TransferOrderNo_Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - Control 2578066365 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many copies of the document to print.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - Control NoOfCopies - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - Control 2578066365 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Copies</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - Control NoOfCopies - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - Control 316520822 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want the printed report to show information that is only for internal use.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - Control ShowInternalInfo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3035024082 - Control 316520822 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Internal Information</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transfer Order TW - Control ShowInternalInfo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 46586896 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>E Retail Orders</source>
@@ -10774,7 +11419,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report TW Performance Report - Control ServiceFilterG - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 637382314 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>TW Main Dashboard Fill Data</source>
+          <source>TW Sales Row Data Fill Data</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TW Sales Row Data Fill Data - Property Caption</note>
         </trans-unit>
@@ -11207,6 +11852,96 @@
           <source>Print Summary</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TWN Daily Sales Register - Control PrintSummary - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Physical Inventory List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 684809554" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType CurrReportPageNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 905153436" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType Description2CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 817831222" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType DescriptionCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 3058515545" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EAN No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType EANNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 3862324721" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType ItemJnlLinePostDtCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 1074460042" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Manufacturer Item No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType ManufacturerItemCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 892238773" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*Note:</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType Note1Lbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 2495529392" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty.(Phys. Inv.)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType PhyInvCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 1343299874" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phys. Inventory List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType PhysInventoryListCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 674031150" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Summary per Item *</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType SummaryperItemCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - NamedType 2203548600" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Your system is set up to use Bin Mandatory and not SN/Lot Warehouse Tracking. Therefore, you will not see serial/lot numbers by bin but merely as a summary per item.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - NamedType SummaryPerItemLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - Control 2062566191 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Print in UOI values</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - Control Print in UOI Values - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - Control 1533024545 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want the report to show the calculated quantity of the items.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - Control ShowCalculatedQty - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - Control 1533024545 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Qty. (Calculated)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - Control ShowCalculatedQty - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - Control 4010872625 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want the report to show lot and serial numbers.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - Control ShowSerialLotNumber - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 2050301227 - Control 4010872625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Serial/Lot Number</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TWN Phys. Inventory List - Control ShowSerialLotNumber - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 533612592 - NamedType 1658869567" size-unit="char" translate="yes" xml:space="preserve">
           <source>Following RC(s) have no Zone or Dealer Dimension:\\%1</source>
@@ -11742,6 +12477,11 @@
           <source>On Hold</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Notification Entry Card Ext - Action On Hold - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3926397906 - Action 4181930136 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2187133665">
+          <source>&amp;Print</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Phys. Inventory Journal Ext - Action PrintTWN - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2811344423 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 942541130">
           <source>Posted Cash Register Statements</source>

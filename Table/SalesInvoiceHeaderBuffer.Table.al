@@ -1389,6 +1389,13 @@ table 1044869 "Sales Invoice Header Buffer"
         field(1044880; "Service Center Key"; Code[10])
         {
         }
+        field(1073860; "VC Vehicle Check Status"; Option)
+        {
+            Caption = 'Vehicle Check Status';
+            OptionMembers = "Not Mandatory","Not Done","On-Going",Done;
+            DataClassification = CustomerContent;
+            Editable = false;
+        }
     }
 
     keys

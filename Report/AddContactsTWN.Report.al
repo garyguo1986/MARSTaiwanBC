@@ -76,6 +76,7 @@ report 1044870 "Add Contacts (TWN)"
 
                 trigger OnPreDataItem()
                 begin
+                    OnPreDataVehicle("Segment Header"."No.", Vehicle, ExternalInfoG);
                     //++BSS.IT_5551.MH
                     LicPermission.Get(LicPermission."Object Type"::Table, DATABASE::Vehicle);
                     if LicPermission."Execute Permission" <> LicPermission."Execute Permission"::Yes then
@@ -116,6 +117,7 @@ report 1044870 "Add Contacts (TWN)"
 
                 trigger OnPreDataItem()
                 begin
+                    OnPreDataSalesInvHdr("Segment Header"."No.", "Sales Invoice Header", ExternalInfoG);
                     //Start 111127
                     if ContactOK and (GetFilters <> '') then
                         ContactOK := false
@@ -140,6 +142,7 @@ report 1044870 "Add Contacts (TWN)"
 
                 trigger OnPreDataItem()
                 begin
+                    OnPreDataSalesInvLine("Segment Header"."No.", "Sales Invoice Line", ExternalInfoG);
                     //Start 114096
                     if ContactOK and (GetFilters <> '') then
                         ContactOK := false
@@ -158,6 +161,10 @@ report 1044870 "Add Contacts (TWN)"
                         InsertContact(Contact);
                 end;
             }
+            trigger OnPreDataItem()
+            begin
+                OnPreDataContact("Segment Header"."No.", Contact, ExternalInfoG);
+            end;
 
             trigger OnAfterGetRecord()
             begin
@@ -228,6 +235,8 @@ report 1044870 "Add Contacts (TWN)"
 
     trigger OnPostReport()
     begin
+        OnBoforePostReport("Segment Header"."No.", Contact, Vehicle, "Sales Invoice Header", "Sales Invoice Line", ExternalInfoG);
+
         if ExpandCompanies then
             AddPeople;
 
@@ -249,6 +258,7 @@ report 1044870 "Add Contacts (TWN)"
 
     trigger OnPreReport()
     begin
+        OnBeforeReport(Contact, Vehicle, "Sales Invoice Header", "Sales Invoice Line", ExternalInfoG);
         // Start 114096
         //ItemFilters := "Value Entry".HASFILTER;
         // Stop 114096
@@ -351,6 +361,8 @@ report 1044870 "Add Contacts (TWN)"
         VehicleG: Record Vehicle;
         VehicleTempG: Record Vehicle temporary;
         CheckOnly: Boolean;
+        ExternalInfoG: Text[100];
+        IsBackgroundG: Boolean;
 
     [Scope('OnPrem')]
     procedure SetOptions(OptionAllowExistingContact: Boolean; OptionExpandCompanies: Boolean; OptionAllowCoRepdByContPerson: Boolean; OptionIgnoreExclusion: Boolean)
@@ -458,8 +470,9 @@ report 1044870 "Add Contacts (TWN)"
                     end;
                     //--BSS.IT_20478.SS
                     SegLine.Insert(true);
-                    SegmentHistoryMgt.InsertLine(
-                      SegLine."Segment No.", SegLine."Contact No.", SegLine."Line No.");
+                    if not IsBackgroundG then
+                        SegmentHistoryMgt.InsertLine(
+                          SegLine."Segment No.", SegLine."Contact No.", SegLine."Line No.");
 
                     //++BSS.IT_6529.SS
                     SegLine.SetRange("Segment No.", "Segment Header"."No.");
@@ -614,6 +627,41 @@ report 1044870 "Add Contacts (TWN)"
                 TempContactP.Insert;
             until TempCont.Next = 0;
         //--BSS.IT_21567.CM
+    end;
+
+    procedure Background(IsBackgroundP: Boolean)
+    begin
+        IsBackgroundG := IsBackgroundP;
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeReport(var ContactP: Record Contact; var VehicleP: Record Vehicle; var SalesInvoiceHdrP: Record "Sales Invoice Header"; var SalesInvoiceLineP: Record "Sales Invoice Line"; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnPreDataContact(var SegmentNoP: Code[20]; var ContactP: Record Contact; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnPreDataVehicle(var SegmentNoP: Code[20]; var VehicleP: Record Vehicle; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnPreDataSalesInvHdr(var SegmentNoP: Code[20]; var SalesInvoiceHdrP: Record "Sales Invoice Header"; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnPreDataSalesInvLine(var SegmentNoP: Code[20]; var SalesInvoiceLineP: Record "Sales Invoice Line"; var ExternalInfoP: Text[100])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBoforePostReport(var SegmentNoP: Code[20]; var ContactP: Record Contact; var VehicleP: Record Vehicle; var SalesInvoiceHdrP: Record "Sales Invoice Header"; var SalesInvoiceLineP: Record "Sales Invoice Line"; var ExternalInfoP: Text[100])
+    begin
     end;
 }
 

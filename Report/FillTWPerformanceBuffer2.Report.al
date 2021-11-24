@@ -12,7 +12,9 @@ report 1044873 "Fill TW Performance Buffer2"
     // RGS_TWN-809   118849        GG     2019-03-13  New Object
     // RGS_TWN-839   119384        WP     2019-05-10  Add "Gross Profit"
 
-    Caption = 'Fill TW Performance Buffer';
+    Caption = 'Fill TW Performance Buffer2';
+    UsageCategory = Tasks;
+    ApplicationArea = All;
     ProcessingOnly = true;
 
     dataset
@@ -119,10 +121,14 @@ report 1044873 "Fill TW Performance Buffer2"
             TableKeyInfoG.SETFILTER("Table ID", '112|114');
             TableKeyInfoG.DELETEALL;
         END;
+        //++TWN1.00.122187.GG
+        MARSTWNTempFlagMgtG.FixVehicleCheckStatusForPerformaceReport();
+        //--TWN1.00.122187.GG
     end;
 
     var
         BufferG: Record 1044867;
+        MARSTWNTempFlagMgtG: Codeunit "MARS TWN Temp Flag Mgt";
         C_INC_001: Label 'The buffer is filled success.';
         TableKeyInfoG: Record 1044868;
         SalesCrMemoHeaderG: Record 114;
@@ -297,6 +303,8 @@ report 1044873 "Fill TW Performance Buffer2"
         // IF SalesInvoiceHeaderP."Vehicle Check Status" <> SalesInvoiceHeaderP."Vehicle Check Status"::Done THEN
         //             EXIT;
         //--TWN1.00.122187.QX
+        if not (SalesInvoiceHeaderP."VC Vehicle Check Status" in [SalesInvoiceHeaderP."VC Vehicle Check Status"::Done, SalesInvoiceHeaderP."VC Vehicle Check Status"::"On-Going"]) then
+            exit;
 
         IF CancelP THEN
             CancelRateL := -1
